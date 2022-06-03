@@ -1,25 +1,22 @@
+import { ThemeProvider } from "@mui/material/styles";
 import { useEffect } from "react";
 import { Route, Routes } from "react-router-dom";
-
 import "./App.css";
-// import { useDispatch, useSelector } from 'react-redux';
-// import { bindActionCreators } from 'redux';
-// import { authActionCreators } from './store';
 import { Invitation } from "./bookings/Invitation";
+import theme from "./theme";
 
 function App() {
-  // const dispatch = useDispatch();
-  // const { login,fetchSermon, logout} = bindActionCreators(authActionCreators, dispatch);
-
   useEffect(() => {
     //fetchSermon();
   }, []);
 
   return (
     <>
-      <Routes>
-        <Route path="/" element={<Invitation />} />
-      </Routes>
+      <ThemeProvider theme={theme}>
+        <Routes>
+          <Route path="/" element={<Invitation />} />
+        </Routes>
+      </ThemeProvider>
     </>
   );
 }
