@@ -5,14 +5,30 @@ import HourglassTopIcon from "@mui/icons-material/HourglassTop";
 import CancelIcon from "@mui/icons-material/Cancel";
 import AccessTimeIcon from "@mui/icons-material/AccessTime";
 import LocationOnIcon from "@mui/icons-material/LocationOn";
+import { useEffect } from "react";
+import { useActions } from "../hooks/useBooking";
+import { useSelector } from "../hooks/useTypesSelector";
+import { Participant } from "./components/Participant";
 
 export function Invitation() {
+  const { getInvitation } = useActions();
+  const { loading, error, invitation } = useSelector((state) => state.booking);
+
+  const getDate = () => {
+    let date = new String(invitation.meeting_time);
+    return new Date(date.toString()).toString();
+  };
+
+  //  const loading = useSelector((state) => state.bookings.loading);
+  useEffect(() => {
+    getInvitation(121);
+  }, []);
   return (
     <>
       <div className=" h-full w-full flex flex-col justify-center items-center bg-image">
         <div className="flex flex-col gap-y-7">
-          <div className=" w-[35rem] p-8 card rounded-xl bg-white">
-            <div className="flex flex-col  text-center">
+          <div className="md:w-[35rem] w-full p-8  rounded-xl bg-white">
+            <div className=" text-center">
               <p className=" text-2xl ">Hi 👋🏻</p>
               <p className=" text-2xl ">
                 Reply to <span className="font-bold">Stacy</span> and get ready
@@ -21,18 +37,25 @@ export function Invitation() {
             </div>
             <div>
               <p className="text-neutral-400 text-sm">Participants</p>
-              <div className="flex gap-2">
-                <Chip label="Kertice Asante" icon={<DoneIcon />} />
-                <Chip label="Ekow Baah" icon={<HourglassTopIcon />} />
-                <Chip label="Robert Laryea" icon={<CancelIcon />} />
+              <div className="">
+                {invitation.people?.map((participant) => (
+                  <Participant
+                    booking_member_id={participant.booking_member_id}
+                    member_email={participant.member_email}
+                    member_name={participant.member_name}
+                    bmstatus={participant.bmstatus}
+                    username={participant.username}
+                    user_image={participant.user_image}
+                  />
+                ))}
               </div>
               <div className="mt-3">
                 <p className="">
-                  <AccessTimeIcon className="text-red-600" /> Tue May 31, 2022
-                  2pm Central European Time - Stockholm
+                  <AccessTimeIcon className="text-red-600" /> {getDate()}
                 </p>
                 <p className="font-bold">
-                  <LocationOnIcon className="text-red-600" /> Kista Galleria
+                  <LocationOnIcon className="text-red-600" />
+                  {invitation.place?.place_name}, {invitation.place?.place_city}
                 </p>
                 <div className="mt-4">
                   <p className="font-bold">Notes</p>

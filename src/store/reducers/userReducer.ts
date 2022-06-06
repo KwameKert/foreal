@@ -2,7 +2,7 @@ import { ActionType } from "../action-types";
 import { Action } from "../actions/user";
 import { UserDetails } from "../../user/user.model";
 
-interface State {
+interface UserState {
   user: UserDetails;
   loading: boolean;
   error: string | null;
@@ -13,7 +13,10 @@ const initialState = {
   error: null,
 };
 
-const reducer = (state: State = initialState, action: Action): State => {
+const reducer = (
+  state: UserState = initialState,
+  action: Action
+): UserState => {
   switch (action.type) {
     case ActionType.SET_USER_DETAILS:
       return {
