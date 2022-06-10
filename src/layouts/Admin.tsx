@@ -1,7 +1,6 @@
 import * as React from "react";
 import Box from "@mui/material/Box";
 import Drawer from "@mui/material/Drawer";
-import CssBaseline from "@mui/material/CssBaseline";
 import Toolbar from "@mui/material/Toolbar";
 import Divider from "@mui/material/Divider";
 import { Outlet } from "react-router-dom";
@@ -10,6 +9,7 @@ import { SideBar } from "./components/SideBar";
 import HomeIcon from "@mui/icons-material/Home";
 import RestaurantIcon from "@mui/icons-material/Restaurant";
 import { Header } from "./components/Header";
+import AppLoader from "../core/components/AppLoader";
 
 const drawerWidth = 240;
 interface Props {
@@ -40,7 +40,6 @@ export default function Admin(props: Props) {
 
   return (
     <>
-      <CssBaseline />
       <Box sx={{ display: "flex" }}>
         <Header handleDrawerToggle={handleDrawerToggle} />
         <Box
@@ -95,6 +94,8 @@ export default function Admin(props: Props) {
           }}
         >
           <Toolbar />
+          <AppLoader />
+
           <Outlet />
         </Box>
       </Box>

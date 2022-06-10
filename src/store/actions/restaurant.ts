@@ -1,0 +1,25 @@
+import { RestaurantActionType } from "../action-types/restaurant";
+
+interface RestaurantSetListAction {
+  type: RestaurantActionType.SET_RESTAURANT_LIST;
+  payload: any;
+}
+
+interface RestaurantStartLoadAction {
+  type: RestaurantActionType.START_LOAD_RESTAURANT;
+}
+
+interface RestaurantEndLoadAction {
+  type: RestaurantActionType.END_LOAD_RESTAURANT;
+  payload?: any;
+}
+
+interface RestaurantUploadLoadAction {
+  type: RestaurantActionType.UPLOAD_RESTAURANT_FILE;
+}
+
+export type Action =
+  | RestaurantSetListAction
+  | RestaurantStartLoadAction
+  | RestaurantEndLoadAction
+  | RestaurantUploadLoadAction;

@@ -1,4 +1,4 @@
-import { FunctionComponent, useRef, useState } from "react";
+import { FunctionComponent, useState } from "react";
 import { AppInput } from "../../../core/components/AppInput";
 import { AppButton } from "../../../core/components/AppButton";
 import SearchIcon from "@mui/icons-material/Search";
@@ -9,8 +9,6 @@ import { AppIconButton } from "../../../core/components/AppIconButton";
 export const RestaurantSearch: FunctionComponent = () => {
   const [active, setActive] = useState(false);
   const [height, setHeight] = useState("0px");
-  const contentSpace = useRef<HTMLDivElement>(null);
-
   const handleToggle = () => {
     setActive(!active);
     setHeight(active ? "0px" : `100px`);
@@ -36,7 +34,7 @@ export const RestaurantSearch: FunctionComponent = () => {
             <AppIconButton
               color="default"
               icon={<FilterListIcon />}
-              handleCklick={handleToggle}
+              handleClick={handleToggle}
             />
           </div>
         </div>

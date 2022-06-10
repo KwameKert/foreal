@@ -10,20 +10,18 @@ import { RestaurantSearch } from "./RestaurantSearch";
 
 function createData(
   name: string,
-  calories: number,
-  fat: number,
-  carbs: number,
-  protein: number
+  location: string,
+  country: string,
+  invites: number,
+  createdAt: string
 ) {
-  return { name, calories, fat, carbs, protein };
+  return { name, location, country, invites, createdAt };
 }
 
 const rows = [
-  createData("Frozen yoghurt", 159, 6.0, 24, 4.0),
-  createData("Ice cream sandwich", 237, 9.0, 37, 4.3),
-  createData("Eclair", 262, 16.0, 24, 6.0),
-  createData("Cupcake", 305, 3.7, 67, 4.3),
-  createData("Gingerbread", 356, 16.0, 49, 3.9),
+  createData("MacDonalds", "Torino", "Italy", 24, new Date().toISOString()),
+  createData("KFC", "Rome", "Italy", 4, new Date().toISOString()),
+  createData("Max", "Viena", "Italy", 24, new Date().toISOString()),
 ];
 
 export default function RestaurantList() {
@@ -36,11 +34,11 @@ export default function RestaurantList() {
             <Table sx={{ minWidth: 650 }} aria-label="simple table">
               <TableHead>
                 <TableRow>
-                  <TableCell>Dessert (100g serving)</TableCell>
-                  <TableCell align="right">Calories</TableCell>
-                  <TableCell align="right">Fat&nbsp;(g)</TableCell>
-                  <TableCell align="right">Carbs&nbsp;(g)</TableCell>
-                  <TableCell align="right">Protein&nbsp;(g)</TableCell>
+                  <TableCell>Name</TableCell>
+                  <TableCell align="center">Address</TableCell>
+                  <TableCell align="center">Country</TableCell>
+                  <TableCell align="center">No. invites</TableCell>
+                  <TableCell align="center">Created At</TableCell>
                 </TableRow>
               </TableHead>
               <TableBody>
@@ -52,10 +50,10 @@ export default function RestaurantList() {
                     <TableCell component="th" scope="row">
                       {row.name}
                     </TableCell>
-                    <TableCell align="right">{row.calories}</TableCell>
-                    <TableCell align="right">{row.fat}</TableCell>
-                    <TableCell align="right">{row.carbs}</TableCell>
-                    <TableCell align="right">{row.protein}</TableCell>
+                    <TableCell align="center">{row.location}</TableCell>
+                    <TableCell align="center">{row.country}</TableCell>
+                    <TableCell align="center">{row.invites}</TableCell>
+                    <TableCell align="center">{row.createdAt}</TableCell>
                   </TableRow>
                 ))}
               </TableBody>

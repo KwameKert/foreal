@@ -13,19 +13,19 @@ type AppInputProps = {
     | undefined;
   icon: any;
   buttonClass?: string;
-  handleCklick: () => void;
+  handleClick: () => void;
 };
 export const AppIconButton: FunctionComponent<AppInputProps> = ({
   color,
   icon,
-  handleCklick,
+  handleClick,
 }) => {
   return (
     <IconButton
       color={color}
       aria-label="upload picture"
       component="span"
-      onClick={handleCklick}
+      onClick={handleClick}
     >
       {icon}
     </IconButton>

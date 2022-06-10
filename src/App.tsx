@@ -1,5 +1,4 @@
 import { ThemeProvider } from "@mui/material/styles";
-import { useEffect } from "react";
 import { Route, Routes } from "react-router-dom";
 import "./App.css";
 import { Invitation } from "./bookings/Invitation";
@@ -7,16 +6,11 @@ import theme from "./theme";
 import Admin from "./layouts/Admin";
 import { Restaurant } from "./pages/restaurant/Restaurant";
 import { Dashboard } from "./pages/dashboard/Dashboard";
-import AppLoader from "./core/components/AppLoader";
+import Notification from "./core/components/Notification";
 
 function App() {
-  useEffect(() => {
-    //fetchSermon();
-  }, []);
-
   return (
     <>
-      <AppLoader />
       <div className="h-full">
         <ThemeProvider theme={theme}>
           <Routes>
@@ -29,6 +23,7 @@ function App() {
           </Routes>
         </ThemeProvider>
       </div>
+      <Notification />
     </>
   );
 }
