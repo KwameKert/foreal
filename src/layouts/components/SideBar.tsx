@@ -1,10 +1,6 @@
 import React, { FunctionComponent } from "react";
 import List from "@mui/material/List";
-import ListItem from "@mui/material/ListItem";
-import ListItemButton from "@mui/material/ListItemButton";
-import ListItemIcon from "@mui/material/ListItemIcon";
-import ListItemText from "@mui/material/ListItemText";
-import { Link } from "react-router-dom";
+import { MenuItem } from "./MenuItem";
 
 type SidebarInterface = {
   menus: Array<Menu>;
@@ -19,14 +15,13 @@ type Menu = {
 export const SideBar: FunctionComponent<SidebarInterface> = ({ menus }) => {
   return (
     <>
+      <div className="text-center py-5 text-red-500	">
+        <p className="text-3xl font-bold	">Foreal </p>
+      </div>
+
       <List>
         {menus.map((menu, index) => (
-          <ListItem key={menu.name} disablePadding>
-            <ListItemButton component={Link} to={menu.path}>
-              <ListItemIcon>{menu.icon}</ListItemIcon>
-              <ListItemText primary={menu.name} />
-            </ListItemButton>
-          </ListItem>
+          <MenuItem key={index} {...menu} />
         ))}
       </List>
     </>

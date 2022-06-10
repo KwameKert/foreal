@@ -1,9 +1,18 @@
 import { createTheme } from "@mui/material/styles";
 
 const theme = createTheme({
+  typography: {
+    fontFamily: ["Open Sans", "sans-serif"].join(","),
+  },
   palette: {
     primary: {
-      main: "#EE0017",
+      main: "#a80874",
+    },
+    secondary: {
+      main: "#0e7c7b",
+    },
+    info: {
+      main: "#92bfb1",
     },
   },
 });

@@ -1,28 +1,26 @@
 import * as React from "react";
-import { useTheme } from "@mui/material/styles";
 import Box from "@mui/material/Box";
 import Drawer from "@mui/material/Drawer";
 import CssBaseline from "@mui/material/CssBaseline";
 import Toolbar from "@mui/material/Toolbar";
-import Typography from "@mui/material/Typography";
 import Divider from "@mui/material/Divider";
-import IconButton from "@mui/material/IconButton";
-import MenuIcon from "@mui/icons-material/Menu";
-import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
-import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 import { Outlet } from "react-router-dom";
-import { AppBar } from "./components/AppBar";
-import { Main } from "./components/Main";
 import { DrawerHeader } from "./components/DrawerHeader";
 import { SideBar } from "./components/SideBar";
 import HomeIcon from "@mui/icons-material/Home";
 import RestaurantIcon from "@mui/icons-material/Restaurant";
+import { Header } from "./components/Header";
 
 const drawerWidth = 240;
+interface Props {
+  window?: () => Window;
+}
+export default function Admin(props: Props) {
+  const { window } = props;
+  const container =
+    window !== undefined ? () => window().document.body : undefined;
+  const [mobileOpen, setMobileOpen] = React.useState(false);
 
-export default function Admin() {
-  const theme = useTheme();
-  const [open, setOpen] = React.useState(false);
   const menus = [
     {
       name: "Dashboard",
@@ -36,63 +34,70 @@ export default function Admin() {
     },
   ];
 
-  const handleDrawerOpen = () => {
-    setOpen(true);
-  };
-
-  const handleDrawerClose = () => {
-    setOpen(false);
+  const handleDrawerToggle = () => {
+    setMobileOpen(!mobileOpen);
   };
 
   return (
-    <Box sx={{ display: "flex" }}>
+    <>
       <CssBaseline />
-      <AppBar position="fixed" open={open}>
-        <Toolbar>
-          <IconButton
-            color="inherit"
-            aria-label="open drawer"
-            onClick={handleDrawerOpen}
-            edge="start"
-            sx={{ mr: 2, ...(open && { display: "none" }) }}
+      <Box sx={{ display: "flex" }}>
+        <Header handleDrawerToggle={handleDrawerToggle} />
+        <Box
+          component="nav"
+          sx={{ width: { sm: drawerWidth }, flexShrink: { sm: 0 } }}
+          aria-label="mailbox folders"
+        >
+          <Drawer
+            container={container}
+            variant="temporary"
+            open={mobileOpen}
+            onClose={handleDrawerToggle}
+            ModalProps={{
+              keepMounted: true, // Better open performance on mobile.
+            }}
+            sx={{
+              display: { xs: "block", sm: "none" },
+              "& .MuiDrawer-paper": {
+                boxSizing: "border-box",
+                width: drawerWidth,
+              },
+            }}
           >
-            <MenuIcon />
-          </IconButton>
-          <Typography variant="h6" noWrap component="div">
-            Foreal
-          </Typography>
-        </Toolbar>
-      </AppBar>
-      <Drawer
-        sx={{
-          width: drawerWidth,
-          flexShrink: 0,
-          "& .MuiDrawer-paper": {
-            width: drawerWidth,
-            boxSizing: "border-box",
-          },
-        }}
-        variant="persistent"
-        anchor="left"
-        open={open}
-      >
-        <DrawerHeader>
-          <IconButton onClick={handleDrawerClose}>
-            {theme.direction === "ltr" ? (
-              <ChevronLeftIcon />
-            ) : (
-              <ChevronRightIcon />
-            )}
-          </IconButton>
-        </DrawerHeader>
-        <Divider />
-        <SideBar menus={menus} />
-        <Divider />
-      </Drawer>
-      <Main open={open} className="container">
-        <DrawerHeader />
-        <Outlet />
-      </Main>
-    </Box>
+            <DrawerHeader></DrawerHeader>
+            <Divider />
+            <SideBar menus={menus} />
+            <Divider />
+          </Drawer>
+
+          <Drawer
+            className="border-2"
+            variant="permanent"
+            sx={{
+              display: { xs: "none", sm: "block" },
+              "& .MuiDrawer-paper": {
+                boxSizing: "border-box",
+                width: drawerWidth,
+                borderRight: "none",
+              },
+            }}
+            open
+          >
+            <SideBar menus={menus} />
+          </Drawer>
+        </Box>
+        <Box
+          component="main"
+          sx={{
+            flexGrow: 1,
+            p: 3,
+            width: { sm: `calc(100% - ${drawerWidth}px)` },
+          }}
+        >
+          <Toolbar />
+          <Outlet />
+        </Box>
+      </Box>
+    </>
   );
 }
