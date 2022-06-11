@@ -17,7 +17,7 @@ function App() {
       <div className="h-full">
         <ThemeProvider theme={theme}>
           <Routes>
-            <Route path="/" element={<Invitation />} />
+            <Route path="/" element={<Login />} />
             <Route path="/auth/login" element={<Login />} />
             <Route path="/app" element={<Admin />}>
               <Route path="" element={<Dashboard />} />
