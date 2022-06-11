@@ -7,6 +7,7 @@ type AppButtonProps = {
   text: string;
   icon?: any;
   buttonStyles?: string | undefined;
+  disabled?: boolean;
   handleClick?: () => void;
 };
 
@@ -17,6 +18,7 @@ export const AppButton: FunctionComponent<AppButtonProps> = ({
   text,
   icon,
   handleClick,
+  disabled=false
 }) => {
   return (
     <Button
@@ -25,6 +27,7 @@ export const AppButton: FunctionComponent<AppButtonProps> = ({
       className={buttonStyles}
       startIcon={icon}
       onClick={handleClick}
+      disabled={disabled}
     >
       {text}
     </Button>

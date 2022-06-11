@@ -1,5 +1,6 @@
-import { ActionType } from "../action-types";
+import { ActionType, AuthActionType } from "../action-types";
 import { Action } from "../actions/user";
+import { AuthAction } from "../actions/auth";
 import { UserDetails } from "../../user/user.model";
 
 interface UserState {
@@ -15,9 +16,19 @@ const initialState = {
 
 const reducer = (
   state: UserState = initialState,
-  action: Action
+  action: Action | AuthAction
 ): UserState => {
   switch (action.type) {
+    case AuthActionType.USER_IS_LOGGING_IN:
+      return {
+        ...state,
+        loading: true,
+      };
+    case AuthActionType.USER_AUTH_FAILED:
+      return {
+        ...state,
+        error: action.payload,
+      };
     case ActionType.SET_USER_DETAILS:
       return {
         loading: false,

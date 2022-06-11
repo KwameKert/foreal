@@ -4,11 +4,15 @@ import { useSelector } from "../../hooks/useTypesSelector";
 import { useEffect } from "react";
 
 export default function AppLoader() {
-  const { loading } = useSelector((state) => state.restaurant);
+  const { loading: userLoading } = useSelector((state) => state.user);
+  const { loading: restaurantLoading } = useSelector(
+    (state) => state.restaurant
+  );
+  const { loading: bookLoading } = useSelector((state) => state.booking);
   const [active, setActive] = React.useState(false);
 
   const showLoader = () => {
-    if (loading) {
+    if (userLoading || restaurantLoading || bookLoading) {
       setActive(true);
     } else {
       setActive(false);
@@ -16,7 +20,7 @@ export default function AppLoader() {
   };
   useEffect(() => {
     showLoader();
-  }, [loading]);
+  }, [userLoading, restaurantLoading, bookLoading]);
   return (
     <>
       {active && (

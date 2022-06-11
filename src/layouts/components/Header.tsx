@@ -9,14 +9,21 @@ import MenuIcon from "@mui/icons-material/Menu";
 import Avatar from "@mui/material/Avatar";
 import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
+import { useNavigate } from "react-router-dom";
 
-const settings = ["Profile", "Account", "Dashboard", "Logout"];
+type Setting = {
+  name: string;
+  path: string;
+};
+
+const settings: Array<Setting> = [{ name: "Logout", path: "/auth/login" }];
 
 type HeaderProps = {
   handleDrawerToggle: () => void;
 };
 
 export const Header = ({ handleDrawerToggle }: HeaderProps) => {
+  let navigate = useNavigate();
   const drawerWidth = 240;
   const [anchorElUser, setAnchorElUser] = React.useState<null | HTMLElement>(
     null
@@ -29,9 +36,8 @@ export const Header = ({ handleDrawerToggle }: HeaderProps) => {
   const handleCloseUserMenu = () => {
     setAnchorElUser(null);
   };
-  //   const handleDrawerToggle = () => {
-  //     setMobileOpen(!mobileOpen);
-  //   };
+
+  const navigateToPath = (path: string) => {};
 
   return (
     <AppBar
@@ -53,7 +59,11 @@ export const Header = ({ handleDrawerToggle }: HeaderProps) => {
         >
           <MenuIcon />
         </IconButton>
-
+        <Typography
+          variant="h6"
+          component="div"
+          sx={{ flexGrow: 1 }}
+        ></Typography>
         <Box sx={{ flexGrow: 0 }}>
           <Tooltip title="Open settings">
             <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
@@ -76,9 +86,12 @@ export const Header = ({ handleDrawerToggle }: HeaderProps) => {
             open={Boolean(anchorElUser)}
             onClose={handleCloseUserMenu}
           >
-            {settings.map((setting) => (
-              <MenuItem key={setting} onClick={handleCloseUserMenu}>
-                <Typography textAlign="center">{setting}</Typography>
+            {settings.map((setting: Setting) => (
+              <MenuItem
+                key={setting.name}
+                onClick={() => navigate(setting.path)}
+              >
+                <Typography textAlign="center">{setting.name}</Typography>
               </MenuItem>
             ))}
           </Menu>

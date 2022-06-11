@@ -6,29 +6,48 @@ import { FunctionComponent } from "react";
 type AppInputProps = {
   variant: "standard" | "filled" | "outlined" | undefined;
   label: string;
+  onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  value?: string;
+  type?: string;
+  name?: string;
+  error?: string;
+  inputClass?: string;
 };
 
 export const AppInput: FunctionComponent<AppInputProps> = ({
   variant,
+  name,
   label,
+  value,
+  onChange,
+  inputClass = "w-full",
+  type = "text",
+  error,
 }) => {
   return (
-    <Box
-      component="form"
-      sx={{
-        "& > :not(style)": { m: 1 },
-      }}
-      noValidate
-      autoComplete="off"
-      className="w-full"
-    >
-      <TextField
-        id="standard-basic"
-        label="Standard"
-        variant="standard"
-        className="w-full"
-        fullWidth
-      />
-    </Box>
+    <>
+      <div className={inputClass}>
+        <TextField
+          id="standard-basic"
+          label={label}
+          name={name}
+          variant={variant}
+          color="secondary"
+          defaultValue={value}
+          onChange={onChange}
+          type={type}
+          fullWidth
+        />
+      </div>
+
+      {error && <div className="text-red-500">{error}</div>}
+    </>
+
+    // <>
+    //   <label>{label}</label>
+    //   <input name={name} type={type} onChange={onChange} value={value} />
+    // </>
+
+    // </Box>
   );
 };

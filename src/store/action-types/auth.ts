@@ -1,4 +1,6 @@
 export enum AuthActionType {
-  LOGIN = "login",
-  LOGOUT = "logout",
+  LOGIN = "LOGIN",
+  USER_IS_LOGGING_IN = "USER_IS_LOGGING_IN",
+  USER_AUTH_FAILED = "USER_AUTH_FAILED",
+  LOGOUT = "LOGOUT",
 }

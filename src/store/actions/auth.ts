@@ -6,4 +6,17 @@ interface LoginAction {
   payload: LoginRequest;
 }
 
-export type AuthAction = LoginAction;
+interface LoginAction {
+  type: AuthActionType.LOGIN;
+  payload: LoginRequest;
+}
+
+interface UserIsLoggingAction {
+  type: AuthActionType.USER_IS_LOGGING_IN;
+}
+
+interface UserAuthFailed {
+  type: AuthActionType.USER_AUTH_FAILED;
+  payload?: any;
+}
+export type AuthAction = LoginAction | UserIsLoggingAction | UserAuthFailed;
