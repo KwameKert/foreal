@@ -1,13 +1,14 @@
 import { Action } from "../actions/restaurant";
 import { RestaurantActionType } from "../action-types";
+import { RestaurantList } from "../../pages/restaurant/restaurant.model";
 
 interface RestaurantState {
-  restaurants: any;
+  restaurants: RestaurantList;
   loading: boolean;
   error: string | null;
 }
 
-const initialState = {
+const initialState: RestaurantState = {
   restaurants: {},
   loading: false,
   error: null,

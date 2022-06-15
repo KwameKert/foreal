@@ -10,6 +10,15 @@ interface RestaurantStartLoadAction {
 }
 
 interface RestaurantEndLoadAction {
+  type: RestaurantActionType.END_FETCH_RESTAURANT;
+  payload?: any;
+}
+
+interface RestaurantStartFetchAction {
+  type: RestaurantActionType.START_FETCH_RESTAURANT;
+}
+
+interface RestaurantEndFetchAction {
   type: RestaurantActionType.END_LOAD_RESTAURANT;
   payload?: any;
 }
@@ -22,4 +31,6 @@ export type Action =
   | RestaurantSetListAction
   | RestaurantStartLoadAction
   | RestaurantEndLoadAction
-  | RestaurantUploadLoadAction;
+  | RestaurantUploadLoadAction
+  | RestaurantStartFetchAction
+  | RestaurantEndFetchAction;
