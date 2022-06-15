@@ -16,7 +16,7 @@ export const RestaurantSearch: FunctionComponent = () => {
 
   return (
     <>
-      <div className="bg-gray-400 px-5 rounded-2xl mt-2 mb-8 border border-slate-300 transition duration-700 ease-in-out">
+      <div className="py-1 bg-gray-400 px-5 rounded-2xl mt-2 mb-8 border border-slate-300 transition duration-700 ease-in-out">
         <div className="flex flex-row items-center space-x-10">
           <div className="w-full">
             <AppInput label="Name" variant="standard" />

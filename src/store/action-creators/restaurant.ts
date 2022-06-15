@@ -12,11 +12,16 @@ import { convertObjectToQueryString } from "../../utils/generalHelpters";
 export const uploadRestaurantExcel =
   (file: File) => (dispatch: Dispatch<Action>) => {
     //do something
+    let formData = new FormData();
+    formData.append("excel_file", file);
+
     dispatch({
       type: RestaurantActionType.START_LOAD_RESTAURANT,
     });
     axios
-      .get(`${UPLOAD_RESTAURANT_EXCEL}`)
+      .post(`${UPLOAD_RESTAURANT_EXCEL}`, formData, {
+        headers: { "Content-Type": "multipart/form-data" },
+      })
       .then((response: any) => {
         dispatch({
           type: RestaurantActionType.SET_RESTAURANT_LIST,

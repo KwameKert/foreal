@@ -37,6 +37,18 @@ const reducer = (
         loading: false,
         error: action.payload,
       };
+    case RestaurantActionType.START_FETCH_RESTAURANT:
+      return {
+        ...state,
+        loading: true,
+        error: null,
+      };
+    case RestaurantActionType.END_FETCH_RESTAURANT:
+      return {
+        ...state,
+        loading: false,
+        error: null,
+      };
     default:
       return state;
   }
