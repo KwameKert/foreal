@@ -9,6 +9,7 @@ import { Dashboard } from "./pages/dashboard/Dashboard";
 import Notification from "./core/components/Notification";
 import { Login } from "./auth/Login";
 import AppLoader from "./core/components/AppLoader";
+import { RestaurantDetail } from "./pages/restaurant/RestaurantDetail";
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
             <Route path="/app" element={<Admin />}>
               <Route path="" element={<Dashboard />} />
               <Route path="restaurant" element={<Restaurant />} />
+              <Route path="restaurant/:id" element={<RestaurantDetail />} />
               <Route path="*" element={<Dashboard />} />
             </Route>
           </Routes>

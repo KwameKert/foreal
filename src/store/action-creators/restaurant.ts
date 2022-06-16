@@ -24,8 +24,7 @@ export const uploadRestaurantExcel =
       })
       .then((response: any) => {
         dispatch({
-          type: RestaurantActionType.SET_RESTAURANT_LIST,
-          payload: response.data,
+          type: RestaurantActionType.END_LOAD_RESTAURANT,
         });
       })
       .catch((err) => {
@@ -45,7 +44,6 @@ export const fetchRestaurant =
     axios
       .get(`${FETCH_RESTAURANT_URL}?${queryString}`)
       .then((response: any) => {
-        console.log("fetching data here");
         dispatch({
           type: RestaurantActionType.SET_RESTAURANT_LIST,
           payload: response.data,

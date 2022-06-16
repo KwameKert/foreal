@@ -11,13 +11,10 @@ const PER_PAGE = 10;
 export const Restaurant = () => {
   const { uploadRestaurantExcel, fetchRestaurant } = useActions();
   const { restaurants } = useSelector((state) => state.restaurant);
-  const [total, setTotal] = useState(0);
   const [currentPage, setCurrentPage] = useState(1);
 
-  const [pageCount, setPageCount] = useState(restaurants.total);
-
   useEffect(() => {
-    fetchRestaurant({ size: 10, page: currentPage });
+    fetchRestaurant({ size: PER_PAGE, page: currentPage - 1 });
   }, []);
 
   const inputFile = useRef<any>(null);
@@ -33,6 +30,14 @@ export const Restaurant = () => {
     if (event.target.files && event.target.files.length > 0) {
       var file = event.target.files[0];
       uploadRestaurantExcel(file);
+      setCurrentPage(0);
+      fetchRestaurant({ size: PER_PAGE, page: currentPage });
+      // event.target = null;
+    }
+  };
+  const getPageCount = () => {
+    if (Number(restaurants.total) > 0) {
+      return Math.ceil(Number(restaurants.total) / PER_PAGE);
     }
   };
 
@@ -40,10 +45,10 @@ export const Restaurant = () => {
     event: React.ChangeEvent<unknown>,
     value: number
   ) => {
+    console.log("value ", value);
     setCurrentPage(value);
-    setPageCount(Math.ceil(Number(restaurants.total) / PER_PAGE));
-    console.log("next page --> ", currentPage);
-    fetchRestaurant({ size: 10, page: currentPage });
+    console.log("current Page", currentPage);
+    fetchRestaurant({ size: 10, page: value - 1 });
   };
   return (
     <>
@@ -70,7 +75,7 @@ export const Restaurant = () => {
       <RestaurantList restaurants={restaurants} />
       <div className="flex justify-center py-2">
         <Pagination
-          count={restaurants.total}
+          count={getPageCount()}
           page={currentPage}
           onChange={handlePageClick}
         />
