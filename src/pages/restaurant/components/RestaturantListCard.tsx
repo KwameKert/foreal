@@ -13,7 +13,6 @@ export const RestaurantListCard: FunctionComponent<RestaurantListCardProps> = ({
   const navigate = useNavigate();
 
   const handleRestaurantClick = () => {
-    console.log("Restaurant clicked", restaurant);
     navigate(`/app/restaurant/${restaurant.place_id}`, {
       state: restaurant,
     });
