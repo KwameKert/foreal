@@ -2,7 +2,7 @@ import Avatar from "@mui/material/Avatar";
 import { FunctionComponent } from "react";
 import { useLocation } from "react-router-dom";
 import { Restaurant } from "./restaurant.model";
-
+import { Map } from "./components/Map";
 type RestaurantDetailProps = {};
 
 export const RestaurantDetail: FunctionComponent<
@@ -18,7 +18,7 @@ export const RestaurantDetail: FunctionComponent<
       </div>
       <div className="flex flex-row rounded-2xl gap-10 mt-4">
         <div className=" bg-white p-5 w-2/4	">
-          <p>Maps </p>
+          <p>Maps</p>
         </div>
         <div className=" bg-white p-5 w-2/4">
           <Avatar
