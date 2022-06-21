@@ -1,4 +1,4 @@
-let environment = "dev";
+let environment = "prod";
 
 const generateEnvVariables = () => {
   if (environment === "dev") {
@@ -7,7 +7,7 @@ const generateEnvVariables = () => {
     };
   } else {
     return {
-      baseUrl: "https://stagingzvnt.azurewebsites.net/api/v1",
+      baseUrl: "https://devzvnt.azurewebsites.net/api/v1//api/v1",
     };
   }
 };
