@@ -9,6 +9,7 @@ import { Dashboard } from "./pages/dashboard/Dashboard";
 import Notification from "./core/components/Notification";
 import { Login } from "./auth/Login";
 import AppLoader from "./core/components/AppLoader";
+import { RestaurantDetail } from "./pages/restaurant/RestaurantDetail";
 
 function App() {
   return (
@@ -17,11 +18,13 @@ function App() {
       <div className="h-full">
         <ThemeProvider theme={theme}>
           <Routes>
-            <Route path="/" element={<Invitation />} />
+            <Route path="/" element={<Login />} />
+            <Route path="/invitation" element={<Invitation />} />
             <Route path="/auth/login" element={<Login />} />
             <Route path="/app" element={<Admin />}>
               <Route path="" element={<Dashboard />} />
               <Route path="restaurant" element={<Restaurant />} />
+              <Route path="restaurant/:id" element={<RestaurantDetail />} />
               <Route path="*" element={<Dashboard />} />
             </Route>
           </Routes>

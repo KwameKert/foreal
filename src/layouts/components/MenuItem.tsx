@@ -18,7 +18,7 @@ export const MenuItem: FunctionComponent<Menu> = ({ name, icon, path }) => {
       <ListItemButton
         component={Link}
         to={path}
-        selected={path === location.pathname}
+        selected={location.pathname.includes(path)}
       >
         <ListItemIcon>{icon}</ListItemIcon>
         <ListItemText primary={name} />

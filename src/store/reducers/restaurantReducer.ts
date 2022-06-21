@@ -1,13 +1,14 @@
 import { Action } from "../actions/restaurant";
 import { RestaurantActionType } from "../action-types";
+import { RestaurantList } from "../../pages/restaurant/restaurant.model";
 
 interface RestaurantState {
-  restaurants: any;
+  restaurants: RestaurantList;
   loading: boolean;
   error: string | null;
 }
 
-const initialState = {
+const initialState: RestaurantState = {
   restaurants: {},
   loading: false,
   error: null,
@@ -35,6 +36,18 @@ const reducer = (
         ...state,
         loading: false,
         error: action.payload,
+      };
+    case RestaurantActionType.START_FETCH_RESTAURANT:
+      return {
+        ...state,
+        loading: true,
+        error: null,
+      };
+    case RestaurantActionType.END_FETCH_RESTAURANT:
+      return {
+        ...state,
+        loading: false,
+        error: null,
       };
     default:
       return state;
