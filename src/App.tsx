@@ -19,6 +19,7 @@ function App() {
         <ThemeProvider theme={theme}>
           <Routes>
             <Route path="/" element={<Login />} />
+            <Route path="/invitation" element={<Invitation />} />
             <Route path="/auth/login" element={<Login />} />
             <Route path="/app" element={<Admin />}>
               <Route path="" element={<Dashboard />} />
