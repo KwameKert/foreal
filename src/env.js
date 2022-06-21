@@ -7,7 +7,7 @@ const generateEnvVariables = () => {
     };
   } else {
     return {
-      baseUrl: "https://devzvnt.azurewebsites.net/api/v1//api/v1",
+      baseUrl: "https://devzvnt.azurewebsites.net/api/v1",
     };
   }
 };
