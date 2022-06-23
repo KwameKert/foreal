@@ -57,7 +57,7 @@ export function Invitation() {
           return (
             <p className=" text-2xl ">
               Reply to{" "}
-              <span className="font-bold">{invitation.creator_name}</span> and
+              <span className="font-bold">{invitation.creator_name}'s</span> and
               get ready for{" "}
               <span className="font-bold">{invitation.title}</span>
             </p>
@@ -65,8 +65,8 @@ export function Invitation() {
         case 2:
           return (
             <p className=" text-2xl ">
-              Accepted invited 😀. You have successfully accepted{" "}
-              <span className="font-bold">{invitation.creator_name}</span>{" "}
+              Accepted invitation 😀. You have successfully accepted{" "}
+              <span className="font-bold">{invitation.creator_name}'s</span>{" "}
               invitation to{" "}
               <span className="font-bold">{invitation.title}</span>
             </p>
@@ -74,8 +74,8 @@ export function Invitation() {
         case 3:
           return (
             <p className=" text-2xl ">
-              Accepted invited 😀. You have successfully accepted{" "}
-              <span className="font-bold">{invitation.creator_name}</span>{" "}
+              Declined invitation 😢. You have successfully declined{" "}
+              <span className="font-bold">{invitation.creator_name}'s</span>{" "}
               invitation to{" "}
               <span className="font-bold">{invitation.title}</span>
             </p>
@@ -90,6 +90,7 @@ export function Invitation() {
       contact: decodedContact,
     };
     updateInvitation(Number(decodedStr), data);
+    getInvitation(Number(decodedStr));
   };
   const getDate = () => {
     let date = String(invitation.meeting_time);
