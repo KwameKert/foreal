@@ -3,11 +3,16 @@ import { FunctionComponent } from "react";
 import { useLocation } from "react-router-dom";
 import { Restaurant } from "./restaurant.model";
 import { Map } from "./components/Map";
+import { AppButton } from "../../core/components/AppButton";
+import ArrowBackIcon from "@mui/icons-material/ArrowBack";
+import { useNavigate } from "react-router-dom";
+
 type RestaurantDetailProps = {};
 
 export const RestaurantDetail: FunctionComponent<
   RestaurantDetailProps
 > = ({}) => {
+  const navigate = useNavigate();
   const { state } = useLocation();
   const restaurant = state as Restaurant;
 
@@ -16,11 +21,19 @@ export const RestaurantDetail: FunctionComponent<
       <div className="self-center">
         <p className="text-2xl font-semibold">Restaurant Details</p>
       </div>
+      <AppButton
+        color="primary"
+        size="small"
+        text="back"
+        icon={<ArrowBackIcon />}
+        buttonStyles="bg-red-500 text-gray-500"
+        handleClick={() => navigate(-1)}
+      />
       <div className="flex flex-row rounded-2xl gap-10 mt-4">
-        <div className=" bg-white p-5 w-2/4	">
-          <p>Maps</p>
+        <div className=" bg-white p-5 w-3/5	">
+          <Map />
         </div>
-        <div className=" bg-white p-5 w-2/4">
+        <div className=" bg-white p-5 w-2/5">
           <Avatar
             alt="Remy Sharp"
             src={restaurant.place_profile_image}

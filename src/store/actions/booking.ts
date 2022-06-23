@@ -5,6 +5,11 @@ interface InvitationSetAction {
   payload: any;
 }
 
+interface InvitationUpdateAction {
+  type: BookingActionType.SET_INVITATION;
+  payload: any;
+}
+
 interface InvitationStartAction {
   type: BookingActionType.START_LOAD_INVITATION;
 }
@@ -14,4 +19,5 @@ interface InvitationEndAction {
 export type Action =
   | InvitationSetAction
   | InvitationStartAction
-  | InvitationEndAction;
+  | InvitationEndAction
+  | InvitationUpdateAction;

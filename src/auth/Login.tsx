@@ -5,7 +5,6 @@ import { AppInput } from "../core/components/AppInput";
 import { AppButton } from "../core/components/AppButton";
 import { useFormik } from "formik";
 import { useSelector } from "../hooks/useTypesSelector";
-import LinearProgress from "@mui/material/LinearProgress";
 
 interface FormValues {
   username: string;
@@ -75,7 +74,7 @@ export function Login() {
                 <AppButton
                   color="primary"
                   variant="contained"
-                  text="Search"
+                  text="Login"
                   buttonStyles="font-bold "
                   handleClick={formik.handleSubmit}
                   disabled={!formik.dirty || !formik.isValid || loading}
