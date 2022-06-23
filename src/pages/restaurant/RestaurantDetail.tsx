@@ -30,10 +30,10 @@ export const RestaurantDetail: FunctionComponent<
         handleClick={() => navigate(-1)}
       />
       <div className="flex flex-row rounded-2xl gap-10 mt-4">
-        <div className=" bg-white p-5 w-2/4	">
-          <p>Maps</p>
+        <div className=" bg-white p-5 w-3/5	">
+          <Map />
         </div>
-        <div className=" bg-white p-5 w-2/4">
+        <div className=" bg-white p-5 w-2/5">
           <Avatar
             alt="Remy Sharp"
             src={restaurant.place_profile_image}

@@ -15,6 +15,7 @@ export interface Person {
   member_email: string;
   member_name: string;
   bmstatus: number;
+  member_phone_number: string;
   username: string;
   user_image: string;
 }
