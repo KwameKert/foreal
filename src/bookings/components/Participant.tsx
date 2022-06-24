@@ -1,8 +1,8 @@
 import { Avatar } from "@mui/material";
 import { FunctionComponent } from "react";
 import Tooltip from "@mui/material/Tooltip";
-import { Person } from "../../store/reducers/bookingReducer";
 import { PendingBadge, RejectedBadge, SuccessBadge } from "./BadgeStyles";
+import { Person } from "../booking.model";
 
 export const Participant: FunctionComponent<Person> = ({
   user_image,
