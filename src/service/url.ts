@@ -3,3 +3,4 @@ export const UPLOAD_RESTAURANT_EXCEL = "admin/upload_restaurant";
 export const USER_INVITATION = "booking_confirm";
 export const getUserUpdateInvitation = (id: Number) =>
   `booking_confirm/${id}/memberstatus`;
+export const RESTAURANT_INVITATION = `booking_confirm/booking`;

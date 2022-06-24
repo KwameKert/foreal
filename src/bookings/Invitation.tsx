@@ -10,8 +10,7 @@ import { Participant } from "./components/Participant";
 import { useParams } from "react-router-dom";
 import { ConfirmBooking } from "./components/ConfirmBooking";
 import { StatusLabel } from "./components/StatusLabel";
-import { MemberStatusRequest } from "./booking.model";
-import { Person } from "../store/reducers/bookingReducer";
+import { MemberStatusRequest, Person } from "./booking.model";
 
 export function Invitation() {
   const [open, setOpen] = useState(false);
@@ -30,7 +29,7 @@ export function Invitation() {
 
   const handleDialogResponse = (response: boolean) => {
     setOpen(false);
-    updateStatus(response ? 2 : 1);
+    updateStatus(response ? 2 : 3);
   };
 
   const handleClose = () => {
@@ -112,9 +111,7 @@ export function Invitation() {
           <div className="flex flex-col gap-y-7">
             <div className="md:w-[35rem] w-full p-8  rounded-xl bg-white">
               <div className="flex justify-end">
-                <StatusLabel
-                  restaurant_approved={invitation.restaurant_approved || 0}
-                />
+                <StatusLabel restaurant_approved={invitation.status || 0} />
               </div>
 
               <div className=" text-center mb-2">

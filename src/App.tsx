@@ -10,6 +10,7 @@ import Notification from "./core/components/Notification";
 import { Login } from "./auth/Login";
 import AppLoader from "./core/components/AppLoader";
 import { RestaurantDetail } from "./pages/restaurant/RestaurantDetail";
+import { RestaurantBooking } from "./bookings/RestaurantBooking";
 
 function App() {
   return (
@@ -20,6 +21,10 @@ function App() {
           <Routes>
             <Route path="/" element={<Login />} />
             <Route path="/invitation/:id" element={<Invitation />} />
+            <Route
+              path="/restaurant/booking/:id"
+              element={<RestaurantBooking />}
+            />
             <Route path="/auth/login" element={<Login />} />
             <Route path="/app" element={<Admin />}>
               <Route path="" element={<Dashboard />} />
