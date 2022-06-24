@@ -121,24 +121,23 @@ export const RestaurantBooking = () => {
                   </div>
                 </div>
               </div>
-              {bookingRequest?.restaurant_approved == 1 && (
-                <div className="flex justify-center mt-3 gap-3">
-                  <Button
-                    variant="contained"
-                    color="success"
-                    onClick={() => handleDialogRequest(true)}
-                  >
-                    Accept
-                  </Button>
-                  <Button
-                    variant="outlined"
-                    color="error"
-                    onClick={() => handleDialogRequest(false)}
-                  >
-                    Decline
-                  </Button>
-                </div>
-              )}
+
+              <div className="flex justify-center mt-3 gap-3">
+                <Button
+                  variant="contained"
+                  color="success"
+                  onClick={() => handleDialogRequest(true)}
+                >
+                  Accept
+                </Button>
+                <Button
+                  variant="outlined"
+                  color="error"
+                  onClick={() => handleDialogRequest(false)}
+                >
+                  Decline
+                </Button>
+              </div>
             </div>
           </div>
         </div>
