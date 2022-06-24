@@ -8,9 +8,17 @@ import { METHODS } from "http";
 type StatusProps = {
   restaurant_approved: number;
 };
-
-const MEMBER_STATUS = [
-  null,
+interface data {
+  color: "primary" | "success" | "error" | "secondary" | "info" | undefined;
+  label: string;
+  icon?: any;
+}
+const MEMBER_STATUS: Array<data> = [
+  {
+    label: "Resturant pending",
+    icon: <HourglassFullIcon />,
+    color: "secondary",
+  },
   {
     label: "Resturant pending",
     icon: <HourglassFullIcon />,
@@ -29,6 +37,7 @@ export const StatusLabel: FunctionComponent<StatusProps> = ({
   const label = MEMBER_STATUS[restaurant_approved]?.label;
   return (
     <Chip
+      color={MEMBER_STATUS[restaurant_approved]?.color}
       label={label}
       icon={MEMBER_STATUS[restaurant_approved]?.icon}
       size="small"
