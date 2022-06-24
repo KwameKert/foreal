@@ -145,24 +145,22 @@ export function Invitation() {
                     {invitation.place?.place_city}
                   </p>
 
-                  {getUserDetails()?.bmstatus === 1 && (
-                    <div className="flex justify-center mt-3 gap-3">
-                      <Button
-                        variant="contained"
-                        color="success"
-                        onClick={() => handleDialogRequest(true)}
-                      >
-                        Accept
-                      </Button>
-                      <Button
-                        variant="outlined"
-                        color="error"
-                        onClick={() => handleDialogRequest(false)}
-                      >
-                        Decline
-                      </Button>
-                    </div>
-                  )}
+                  <div className="flex justify-center mt-3 gap-3">
+                    <Button
+                      variant="contained"
+                      color="success"
+                      onClick={() => handleDialogRequest(true)}
+                    >
+                      Accept
+                    </Button>
+                    <Button
+                      variant="outlined"
+                      color="error"
+                      onClick={() => handleDialogRequest(false)}
+                    >
+                      Decline
+                    </Button>
+                  </div>
                 </div>
               </div>
             </div>

@@ -21,10 +21,7 @@ function App() {
           <Routes>
             <Route path="/" element={<Login />} />
             <Route path="/invitation/:id" element={<Invitation />} />
-            <Route
-              path="/restaurant/booking/:id"
-              element={<RestaurantBooking />}
-            />
+            <Route path="/booking/:id" element={<RestaurantBooking />} />
             <Route path="/auth/login" element={<Login />} />
             <Route path="/app" element={<Admin />}>
               <Route path="" element={<Dashboard />} />
