@@ -62,10 +62,7 @@ export const updateBookingDetails =
     axios
       .put(`${RESTAURANT_INVITATION}/${id}`, data)
       .then((response: any) => {
-        dispatch({
-          type: BookingActionType.SET_BOOKING,
-          payload: response.data,
-        });
+        //do something
       })
       .catch((err) => {
         console.log("error caught here", err);
