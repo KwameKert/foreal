@@ -36,6 +36,12 @@ export function Invitation() {
     setOpen(false);
   };
 
+  const showAcceptButton = () => {
+    if (invitation.status === 1) {
+    }
+    return <></>;
+  };
+
   const getUserDetails = () => {
     let user: Person = invitation.people?.find((person) => {
       if (person.member_phone_number === decodedContact) {
@@ -52,15 +58,6 @@ export function Invitation() {
     let user = getUserDetails();
     if (user !== undefined) {
       switch (user?.bmstatus) {
-        case 1:
-          return (
-            <p className=" text-2xl ">
-              Reply to{" "}
-              <span className="font-bold">{invitation.creator_name}'s</span> and
-              get ready for{" "}
-              <span className="font-bold">{invitation.title}</span>
-            </p>
-          );
         case 2:
           return (
             <p className=" text-2xl ">
@@ -76,6 +73,15 @@ export function Invitation() {
               Declined invitation 😢. You have successfully declined{" "}
               <span className="font-bold">{invitation.creator_name}'s</span>{" "}
               invitation to{" "}
+              <span className="font-bold">{invitation.title}</span>
+            </p>
+          );
+        default:
+          return (
+            <p className=" text-2xl ">
+              Reply to{" "}
+              <span className="font-bold">{invitation.creator_name}'s</span> and
+              get ready for{" "}
               <span className="font-bold">{invitation.title}</span>
             </p>
           );
@@ -110,10 +116,6 @@ export function Invitation() {
         <div className=" h-full w-full flex flex-col justify-center items-center bg-image">
           <div className="flex flex-col gap-y-7">
             <div className="md:w-[35rem] w-full p-8  rounded-xl bg-white">
-              <div className="flex justify-end">
-                <StatusLabel restaurant_approved={invitation.status || 0} />
-              </div>
-
               <div className=" text-center mb-2">
                 <p className=" text-2xl ">Hi 👋🏻</p>
                 {getMessage()}
