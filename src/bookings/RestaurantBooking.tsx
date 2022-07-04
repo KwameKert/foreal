@@ -107,6 +107,40 @@ export const RestaurantBooking = () => {
     }
   };
 
+  const getMessage = () => {
+    if (bookingRequest !== undefined) {
+      switch (bookingRequest?.restaurant_approved) {
+        case 2:
+          return (
+            <p className=" text-lg ">
+              <span className="text-green-600	">Accepted invitation 😀.</span>{" "}
+              You have successfully accepted invitation to{" "}
+              <span className="font-bold">{bookingRequest.title}.</span>
+            </p>
+          );
+        case 3:
+          return (
+            <p className=" text-lg ">
+              <span className="text-red-500">Declined invitation 😢.</span> You
+              have successfully declined invitation to{" "}
+              <span className="font-bold">{bookingRequest.title}.</span>
+            </p>
+          );
+        default:
+          return (
+            <p className=" text-lg ">
+              Reply to{" "}
+              <span className="font-bold">
+                {bookingRequest.creator?.name}'s
+              </span>{" "}
+              and get ready for{" "}
+              <span className="font-bold">{bookingRequest.title}</span>.
+            </p>
+          );
+      }
+    }
+  };
+
   useEffect(() => {
     getBookingDetails(Number(decodedStr));
   }, []);
@@ -122,27 +156,20 @@ export const RestaurantBooking = () => {
         <div className=" h-full w-full flex flex-col justify-center items-center bg-image">
           <div className="flex flex-col gap-y-7">
             <div className="md:w-[35rem] w-full p-8  rounded-xl bg-white">
-              <div className="flex flex-col justify-center">
-                <div className="flex justify-center">
-                  <Avatar
-                    src={bookingRequest.place_image}
-                    sx={{ width: 76, height: 76 }}
-                  />
-                </div>
+              <div className="flex gap-x-2">
+                <Avatar
+                  src={bookingRequest.place_image}
+                  sx={{ width: 40, height: 35 }}
+                />
                 <p className="text-2xl font-semibold flex justify-center">
                   {bookingRequest.place_name}
                 </p>
               </div>
               <Divider className="py-1" />
-              <div className="flex justify-end pt-2">
-                <StatusLabel
-                  restaurant_approved={Number(
-                    bookingRequest.restaurant_approved
-                  )}
-                />
-              </div>
 
               <div className="p-3">
+                <div className="py-2">{getMessage()}</div>
+
                 <p className="pb-1">
                   <span className="font-bold">Event: </span>{" "}
                   {bookingRequest.title}
