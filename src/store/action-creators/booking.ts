@@ -33,7 +33,6 @@ export const getInvitation = (id: Number) => (dispatch: Dispatch<Action>) => {
 export const getBookingDetails =
   (id: Number) => (dispatch: Dispatch<Action>) => {
     //do someth
-    console.log("im here");
     dispatch({
       type: BookingActionType.START_LOAD_INVITATION,
     });
@@ -80,7 +79,6 @@ export const updateInvitation =
     axios
       .put(`${getUserUpdateInvitation(id)}`, data)
       .then((response: any) => {
-        console.log("response ", response);
         // dispatch({
         //   type: BookingActionType.SET_INVITATION,
         //   payload: response.data,
