@@ -2,7 +2,11 @@ import { Dispatch } from "react";
 import { BookingActionType } from "../action-types";
 import { Action } from "../actions/booking";
 import axios from "../../service/httpclient";
-import { getUserUpdateInvitation, USER_INVITATION } from "../../service/url";
+import {
+  getUserUpdateInvitation,
+  RESTAURANT_INVITATION,
+  USER_INVITATION,
+} from "../../service/url";
 import { MemberStatusRequest } from "../../bookings/booking.model";
 
 export const getInvitation = (id: Number) => (dispatch: Dispatch<Action>) => {
@@ -26,6 +30,47 @@ export const getInvitation = (id: Number) => (dispatch: Dispatch<Action>) => {
     });
 };
 
+export const getBookingDetails =
+  (id: Number) => (dispatch: Dispatch<Action>) => {
+    //do someth
+    console.log("im here");
+    dispatch({
+      type: BookingActionType.START_LOAD_INVITATION,
+    });
+    axios
+      .get(`${RESTAURANT_INVITATION}/${id}`)
+      .then((response: any) => {
+        dispatch({
+          type: BookingActionType.SET_BOOKING,
+          payload: response.data,
+        });
+      })
+      .catch((err) => {
+        console.log("error caught here", err);
+        dispatch({
+          type: BookingActionType.END_LOAD_INVITATION,
+        });
+      });
+  };
+
+export const updateBookingDetails =
+  (id: Number, data: MemberStatusRequest) => (dispatch: Dispatch<Action>) => {
+    //do someth
+    dispatch({
+      type: BookingActionType.START_LOAD_INVITATION,
+    });
+    axios
+      .put(`${RESTAURANT_INVITATION}/${id}`, data)
+      .then((response: any) => {
+        //do something
+      })
+      .catch((err) => {
+        console.log("error caught here", err);
+        dispatch({
+          type: BookingActionType.END_LOAD_INVITATION,
+        });
+      });
+  };
 export const updateInvitation =
   (id: Number, data: MemberStatusRequest) => (dispatch: Dispatch<Action>) => {
     //do something

@@ -10,8 +10,7 @@ import { Participant } from "./components/Participant";
 import { useParams } from "react-router-dom";
 import { ConfirmBooking } from "./components/ConfirmBooking";
 import { StatusLabel } from "./components/StatusLabel";
-import { MemberStatusRequest } from "./booking.model";
-import { Person } from "../store/reducers/bookingReducer";
+import { MemberStatusRequest, Person } from "./booking.model";
 
 export function Invitation() {
   const [open, setOpen] = useState(false);
@@ -30,11 +29,17 @@ export function Invitation() {
 
   const handleDialogResponse = (response: boolean) => {
     setOpen(false);
-    updateStatus(response ? 2 : 1);
+    updateStatus(response ? 2 : 3);
   };
 
   const handleClose = () => {
     setOpen(false);
+  };
+
+  const showAcceptButton = () => {
+    if (invitation.status === 1) {
+    }
+    return <></>;
   };
 
   const getUserDetails = () => {
@@ -53,15 +58,6 @@ export function Invitation() {
     let user = getUserDetails();
     if (user !== undefined) {
       switch (user?.bmstatus) {
-        case 1:
-          return (
-            <p className=" text-2xl ">
-              Reply to{" "}
-              <span className="font-bold">{invitation.creator_name}'s</span> and
-              get ready for{" "}
-              <span className="font-bold">{invitation.title}</span>
-            </p>
-          );
         case 2:
           return (
             <p className=" text-2xl ">
@@ -80,10 +76,52 @@ export function Invitation() {
               <span className="font-bold">{invitation.title}</span>
             </p>
           );
+        default:
+          return (
+            <p className=" text-2xl ">
+              Reply to{" "}
+              <span className="font-bold">{invitation.creator_name}'s</span> and
+              get ready for{" "}
+              <span className="font-bold">{invitation.title}</span>
+            </p>
+          );
       }
     }
   };
 
+  const acceptInvitationButton = () => {
+    let user: Person = getUserDetails();
+    if (user.bmstatus == 1 || user.bmstatus == 3) {
+      return (
+        <Button
+          variant="contained"
+          color="success"
+          onClick={() => handleDialogRequest(true)}
+        >
+          Accept
+        </Button>
+      );
+    } else {
+      return <></>;
+    }
+  };
+
+  const declineInvitationButton = () => {
+    let user: Person = getUserDetails();
+    if (user.bmstatus == 2 || user.bmstatus == 1) {
+      return (
+        <Button
+          variant="outlined"
+          color="error"
+          onClick={() => handleDialogRequest(false)}
+        >
+          Decline
+        </Button>
+      );
+    } else {
+      return <></>;
+    }
+  };
   const updateStatus = (status: Number) => {
     let data: MemberStatusRequest = {
       status,
@@ -111,12 +149,6 @@ export function Invitation() {
         <div className=" h-full w-full flex flex-col justify-center items-center bg-image">
           <div className="flex flex-col gap-y-7">
             <div className="md:w-[35rem] w-full p-8  rounded-xl bg-white">
-              <div className="flex justify-end">
-                <StatusLabel
-                  restaurant_approved={invitation.restaurant_approved || 0}
-                />
-              </div>
-
               <div className=" text-center mb-2">
                 <p className=" text-2xl ">Hi 👋🏻</p>
                 {getMessage()}
@@ -148,24 +180,10 @@ export function Invitation() {
                     {invitation.place?.place_city}
                   </p>
 
-                  {getUserDetails()?.bmstatus === 1 && (
-                    <div className="flex justify-center mt-3 gap-3">
-                      <Button
-                        variant="contained"
-                        color="success"
-                        onClick={() => handleDialogRequest(true)}
-                      >
-                        Accept
-                      </Button>
-                      <Button
-                        variant="outlined"
-                        color="error"
-                        onClick={() => handleDialogRequest(false)}
-                      >
-                        Decline
-                      </Button>
-                    </div>
-                  )}
+                  <div className="flex justify-center mt-3 gap-3">
+                    {acceptInvitationButton()}
+                    {declineInvitationButton()}
+                  </div>
                 </div>
               </div>
             </div>
