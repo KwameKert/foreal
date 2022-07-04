@@ -80,10 +80,6 @@ export const RestaurantBooking = () => {
         <div className=" h-full w-full flex flex-col justify-center items-center bg-image">
           <div className="flex flex-col gap-y-7">
             <div className="md:w-[35rem] w-full p-8  rounded-xl bg-white">
-              <StatusLabel
-                restaurant_approved={bookingRequest.restaurant_approved || 0}
-              />
-
               <div className="flex flex-col justify-center">
                 <div className="flex justify-center">
                   <Avatar
@@ -105,7 +101,8 @@ export const RestaurantBooking = () => {
                   <span className="font-bold">Time: </span> {getDate()}
                 </p>
                 <p className="pb-1">
-                  <span className="font-bold"> Organizer: </span> Kertice
+                  <span className="font-bold"> Organizer: </span>{" "}
+                  {bookingRequest.creator?.name}
                 </p>
                 <div>
                   <p className="text-neutral-400 text-sm">Participants</p>

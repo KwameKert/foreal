@@ -30,7 +30,7 @@ export const ConfirmBooking: FunctionComponent<ConfirmBookingProps> = ({
       <DialogContent>
         <DialogContentText id="alert-dialog-description">
           Do you really want to <span className="font-bold">{option}</span> this
-          invite? This action cannot be undone.
+          invite? 
         </DialogContentText>
       </DialogContent>
       <DialogActions>
