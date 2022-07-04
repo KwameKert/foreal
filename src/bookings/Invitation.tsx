@@ -9,7 +9,6 @@ import { Participant } from "./components/Participant";
 
 import { useParams } from "react-router-dom";
 import { ConfirmBooking } from "./components/ConfirmBooking";
-import { StatusLabel } from "./components/StatusLabel";
 import { MemberStatusRequest, Person } from "./booking.model";
 
 export function Invitation() {
@@ -34,12 +33,6 @@ export function Invitation() {
 
   const handleClose = () => {
     setOpen(false);
-  };
-
-  const showAcceptButton = () => {
-    if (invitation.status === 1) {
-    }
-    return <></>;
   };
 
   const getUserDetails = () => {
@@ -91,35 +84,39 @@ export function Invitation() {
 
   const acceptInvitationButton = () => {
     let user: Person = getUserDetails();
-    if (user.bmstatus == 1 || user.bmstatus == 3) {
-      return (
-        <Button
-          variant="contained"
-          color="success"
-          onClick={() => handleDialogRequest(true)}
-        >
-          Accept
-        </Button>
-      );
-    } else {
-      return <></>;
+    if (user) {
+      if (user.bmstatus == 1 || user.bmstatus == 3) {
+        return (
+          <Button
+            variant="contained"
+            color="success"
+            onClick={() => handleDialogRequest(true)}
+          >
+            Accept
+          </Button>
+        );
+      } else {
+        return <></>;
+      }
     }
   };
 
   const declineInvitationButton = () => {
     let user: Person = getUserDetails();
-    if (user.bmstatus == 2 || user.bmstatus == 1) {
-      return (
-        <Button
-          variant="outlined"
-          color="error"
-          onClick={() => handleDialogRequest(false)}
-        >
-          Decline
-        </Button>
-      );
-    } else {
-      return <></>;
+    if (user) {
+      if (user.bmstatus == 2 || user.bmstatus == 1) {
+        return (
+          <Button
+            variant="outlined"
+            color="error"
+            onClick={() => handleDialogRequest(false)}
+          >
+            Decline
+          </Button>
+        );
+      } else {
+        return <></>;
+      }
     }
   };
   const updateStatus = (status: Number) => {

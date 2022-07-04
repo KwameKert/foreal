@@ -65,6 +65,48 @@ export const RestaurantBooking = () => {
     getBookingDetails(Number(decodedStr));
   };
 
+  const acceptInvitationButton = () => {
+    if (bookingRequest) {
+      if (
+        bookingRequest.restaurant_approved == 1 ||
+        bookingRequest.restaurant_approved == 3
+      ) {
+        return (
+          <Button
+            variant="contained"
+            color="success"
+            onClick={() => handleDialogRequest(true)}
+          >
+            Accept
+          </Button>
+        );
+      } else {
+        return <></>;
+      }
+    }
+  };
+
+  const declineInvitationButton = () => {
+    if (bookingRequest) {
+      if (
+        bookingRequest.restaurant_approved == 2 ||
+        bookingRequest.restaurant_approved == 1
+      ) {
+        return (
+          <Button
+            variant="outlined"
+            color="error"
+            onClick={() => handleDialogRequest(false)}
+          >
+            Decline
+          </Button>
+        );
+      } else {
+        return <></>;
+      }
+    }
+  };
+
   useEffect(() => {
     getBookingDetails(Number(decodedStr));
   }, []);
@@ -92,6 +134,14 @@ export const RestaurantBooking = () => {
                 </p>
               </div>
               <Divider className="py-1" />
+              <div className="flex justify-end pt-2">
+                <StatusLabel
+                  restaurant_approved={Number(
+                    bookingRequest.restaurant_approved
+                  )}
+                />
+              </div>
+
               <div className="p-3">
                 <p className="pb-1">
                   <span className="font-bold">Event: </span>{" "}
@@ -120,20 +170,8 @@ export const RestaurantBooking = () => {
               </div>
 
               <div className="flex justify-center mt-3 gap-3">
-                <Button
-                  variant="contained"
-                  color="success"
-                  onClick={() => handleDialogRequest(true)}
-                >
-                  Accept
-                </Button>
-                <Button
-                  variant="outlined"
-                  color="error"
-                  onClick={() => handleDialogRequest(false)}
-                >
-                  Decline
-                </Button>
+                {acceptInvitationButton()}
+                {declineInvitationButton()}
               </div>
             </div>
           </div>
