@@ -89,6 +89,39 @@ export function Invitation() {
     }
   };
 
+  const acceptInvitationButton = () => {
+    let user: Person = getUserDetails();
+    if (user.bmstatus == 1 || user.bmstatus == 3) {
+      return (
+        <Button
+          variant="contained"
+          color="success"
+          onClick={() => handleDialogRequest(true)}
+        >
+          Accept
+        </Button>
+      );
+    } else {
+      return <></>;
+    }
+  };
+
+  const declineInvitationButton = () => {
+    let user: Person = getUserDetails();
+    if (user.bmstatus == 2 || user.bmstatus == 1) {
+      return (
+        <Button
+          variant="outlined"
+          color="error"
+          onClick={() => handleDialogRequest(false)}
+        >
+          Decline
+        </Button>
+      );
+    } else {
+      return <></>;
+    }
+  };
   const updateStatus = (status: Number) => {
     let data: MemberStatusRequest = {
       status,
@@ -148,20 +181,8 @@ export function Invitation() {
                   </p>
 
                   <div className="flex justify-center mt-3 gap-3">
-                    <Button
-                      variant="contained"
-                      color="success"
-                      onClick={() => handleDialogRequest(true)}
-                    >
-                      Accept
-                    </Button>
-                    <Button
-                      variant="outlined"
-                      color="error"
-                      onClick={() => handleDialogRequest(false)}
-                    >
-                      Decline
-                    </Button>
+                    {acceptInvitationButton()}
+                    {declineInvitationButton()}
                   </div>
                 </div>
               </div>
