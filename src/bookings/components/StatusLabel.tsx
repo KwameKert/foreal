@@ -6,7 +6,7 @@ import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 import { METHODS } from "http";
 
 type StatusProps = {
-  restaurant_approved: number;
+  restaurant_approved: number ;
 };
 interface data {
   color: "primary" | "success" | "error" | "secondary" | "info" | undefined;
