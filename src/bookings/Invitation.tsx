@@ -36,10 +36,11 @@ export function Invitation() {
   };
 
   const getUserDetails = () => {
+    console.log(decodedContact);
     let user: Person = invitation.people?.find((person) => {
-      if (person.member_phone_number === decodedContact) {
+      if (decodedContact === (person.member_phone_number)) {
         return person;
-      } else if (person.member_email === decodedContact) {
+      } else if (decodedContact === (person.member_email)) {
         return person;
       }
     }) as Person;
@@ -103,6 +104,7 @@ export function Invitation() {
 
   const declineInvitationButton = () => {
     let user: Person = getUserDetails();
+    console.log("user ", user);
     if (user) {
       if (user.bmstatus == 2 || user.bmstatus == 1) {
         return (
