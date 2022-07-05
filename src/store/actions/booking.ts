@@ -10,7 +10,7 @@ interface InvitationUpdateAction {
   payload: any;
 }
 
-interface BookinUpdateAction {
+interface SetBookingAction {
   type: BookingActionType.SET_BOOKING;
   payload: any;
 }
@@ -22,9 +22,15 @@ interface InvitationEndAction {
   payload: any;
   type: BookingActionType.END_LOAD_INVITATION;
 }
+
+interface UpdateBookingAction {
+  payload: any;
+  type: BookingActionType.UPDATE_BOOKING;
+}
 export type Action =
   | InvitationSetAction
   | InvitationStartAction
   | InvitationEndAction
   | InvitationUpdateAction
-  | BookinUpdateAction;
+  | SetBookingAction
+  | UpdateBookingAction;

@@ -31,7 +31,6 @@ export const RestaurantBooking = () => {
     return num?.toString().padStart(2, "0");
   }
   const getDate = () => {
-    console.log("people", bookingRequest.people);
     let dateStr = String(bookingRequest.meeting_time);
     let date: Date = new Date(dateStr.toString());
     return (
@@ -64,7 +63,9 @@ export const RestaurantBooking = () => {
       contact: decodedContact,
     };
     updateBookingDetails(Number(decodedStr), data);
-    getBookingDetails(Number(decodedStr));
+    bookingRequest.restaurant_approved = status;
+
+    //  getBookingDetails(Number(decodedStr));
   };
 
   const acceptInvitationButton = () => {
