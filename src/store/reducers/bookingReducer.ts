@@ -38,6 +38,16 @@ const reducer = (
         bookingRequest: action.payload,
         loading: false,
       };
+
+    case BookingActionType.UPDATE_BOOKING:
+      return {
+        ...state,
+        bookingRequest: {
+          ...state.bookingRequest,
+          restaurant_approved: action.payload.value,
+        },
+        loading: false,
+      };
     case BookingActionType.END_LOAD_INVITATION:
       return {
         ...state,

@@ -64,6 +64,11 @@ export const updateBookingDetails =
       .put(`${RESTAURANT_INVITATION}/${id}`, data)
       .then((response: any) => {
         //do something
+
+        dispatch({
+          type: BookingActionType.UPDATE_BOOKING,
+          payload: response.data,
+        });
       })
       .catch((err) => {
         console.log("error caught here", err);
