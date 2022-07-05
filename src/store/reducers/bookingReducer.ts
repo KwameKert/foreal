@@ -38,6 +38,12 @@ const reducer = (
         bookingRequest: action.payload,
         loading: false,
       };
+    case BookingActionType.END_LOAD_INVITATION:
+      return {
+        ...state,
+        error: action.payload,
+        loading: false,
+      };
     default:
       return state;
   }

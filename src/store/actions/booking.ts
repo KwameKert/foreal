@@ -19,6 +19,7 @@ interface InvitationStartAction {
   type: BookingActionType.START_LOAD_INVITATION;
 }
 interface InvitationEndAction {
+  payload: any;
   type: BookingActionType.END_LOAD_INVITATION;
 }
 export type Action =
