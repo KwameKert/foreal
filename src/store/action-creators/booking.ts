@@ -26,6 +26,7 @@ export const getInvitation = (id: Number) => (dispatch: Dispatch<Action>) => {
       console.log("error caught here");
       dispatch({
         type: BookingActionType.END_LOAD_INVITATION,
+        payload: err.message,
       });
     });
 };
@@ -48,6 +49,7 @@ export const getBookingDetails =
         console.log("error caught here", err);
         dispatch({
           type: BookingActionType.END_LOAD_INVITATION,
+          payload: err.message,
         });
       });
   };
@@ -67,6 +69,7 @@ export const updateBookingDetails =
         console.log("error caught here", err);
         dispatch({
           type: BookingActionType.END_LOAD_INVITATION,
+          payload: err.message,
         });
       });
   };
@@ -88,6 +91,7 @@ export const updateInvitation =
         console.log("error caught here");
         dispatch({
           type: BookingActionType.END_LOAD_INVITATION,
+          payload: err.message,
         });
       });
   };
