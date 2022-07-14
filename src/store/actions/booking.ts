@@ -15,6 +15,10 @@ interface SetBookingAction {
   payload: any;
 }
 
+interface SetAdminInvitationAction {
+  type: BookingActionType.SET_ADMIN_INVITATION;
+  payload: any;
+}
 interface InvitationStartAction {
   type: BookingActionType.START_LOAD_INVITATION;
 }
@@ -33,4 +37,6 @@ export type Action =
   | InvitationEndAction
   | InvitationUpdateAction
   | SetBookingAction
-  | UpdateBookingAction;
+  | UpdateBookingAction
+  | SetAdminInvitationAction;
+

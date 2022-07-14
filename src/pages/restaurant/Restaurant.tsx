@@ -45,9 +45,7 @@ export const Restaurant = () => {
     event: React.ChangeEvent<unknown>,
     value: number
   ) => {
-    console.log("value ", value);
     setCurrentPage(value);
-    console.log("current Page", currentPage);
     fetchRestaurant({ size: 10, page: value - 1 });
   };
   return (
