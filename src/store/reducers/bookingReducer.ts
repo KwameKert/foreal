@@ -1,9 +1,11 @@
 import { Action } from "../actions/booking";
 import { BookingActionType } from "../action-types";
 import { Booking, Invitation } from "../../bookings/booking.model";
+import { BookingList } from "../../pages/booking/booking.model";
 
 interface BookState {
   invitation: Invitation;
+  bookingList: BookingList;
   bookingRequest: Booking;
   loading: boolean;
   error: string | null;
@@ -11,6 +13,7 @@ interface BookState {
 
 const initialState = {
   invitation: {},
+  bookingList: {},
   bookingRequest: {},
   loading: false,
   error: null,
@@ -31,6 +34,13 @@ const reducer = (
         ...state,
         loading: false,
         invitation: action.payload,
+      };
+    case BookingActionType.SET_ADMIN_INVITATION:
+      console.log("action.payload", action.payload);
+      return {
+        ...state,
+        loading: false,
+        bookingList: action.payload,
       };
     case BookingActionType.SET_BOOKING:
       return {

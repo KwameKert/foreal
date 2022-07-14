@@ -3,11 +3,14 @@ import { BookingActionType } from "../action-types";
 import { Action } from "../actions/booking";
 import axios from "../../service/httpclient";
 import {
+  ADMIN_FETCH_INVITATION,
   getUserUpdateInvitation,
   RESTAURANT_INVITATION,
   USER_INVITATION,
 } from "../../service/url";
 import { MemberStatusRequest } from "../../bookings/booking.model";
+import { BookingSearchRequest } from "../../pages/booking/booking.model";
+import { convertObjectToQueryString } from "../../utils/generalHelpters";
 
 export const getInvitation = (id: Number) => (dispatch: Dispatch<Action>) => {
   //do something
@@ -30,6 +33,32 @@ export const getInvitation = (id: Number) => (dispatch: Dispatch<Action>) => {
       });
     });
 };
+
+export const getAllBookings =
+  (data: BookingSearchRequest) => (dispatch: Dispatch<Action>) => {
+    //do something
+    const queryString = convertObjectToQueryString(data);
+
+    dispatch({
+      type: BookingActionType.START_LOAD_INVITATION,
+    });
+    axios
+      .get(`${ADMIN_FETCH_INVITATION}/?${queryString}`)
+      .then((response: any) => {
+        console.log("response", response);
+        dispatch({
+          type: BookingActionType.SET_ADMIN_INVITATION,
+          payload: response.data,
+        });
+      })
+      .catch((err) => {
+        console.log("error caught here");
+        dispatch({
+          type: BookingActionType.END_LOAD_INVITATION,
+          payload: err.message,
+        });
+      });
+  };
 
 export const getBookingDetails =
   (id: Number) => (dispatch: Dispatch<Action>) => {
