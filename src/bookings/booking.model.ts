@@ -82,4 +82,7 @@ export interface Booking {
   moment?: Moment;
   nr_participants?: number;
   people?: RestaurantPeople[];
+  party_size_adults?: number;
+  party_size_children?: number;
+  party_size_infants?: number;
 }

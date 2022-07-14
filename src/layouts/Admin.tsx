@@ -8,6 +8,7 @@ import { DrawerHeader } from "./components/DrawerHeader";
 import { SideBar } from "./components/SideBar";
 import HomeIcon from "@mui/icons-material/Home";
 import RestaurantIcon from "@mui/icons-material/Restaurant";
+import InsertInvitationIcon from "@mui/icons-material/InsertInvitation";
 import { Header } from "./components/Header";
 import AppLoader from "../core/components/AppLoader";
 
@@ -31,6 +32,11 @@ export default function Admin(props: Props) {
       name: "Restaurants",
       icon: <RestaurantIcon />,
       path: "/app/restaurant",
+    },
+    {
+      name: "Bookings",
+      icon: <InsertInvitationIcon />,
+      path: "/app/booking",
     },
   ];
 
