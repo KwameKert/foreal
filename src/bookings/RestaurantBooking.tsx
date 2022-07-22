@@ -1,15 +1,12 @@
 import { Button, Divider } from "@mui/material";
 import Avatar from "@mui/material/Avatar";
-import AccessTimeIcon from "@mui/icons-material/AccessTime";
 import { useEffect, useState } from "react";
 import { useActions } from "../hooks/useBooking";
 import { useSelector } from "../hooks/useTypesSelector";
 import { useParams } from "react-router-dom";
-import { Participant } from "./components/Participant";
-import { ChipParticipant } from "./components/ChipParticipant";
-import { MemberStatusRequest, RestaurantPeople } from "./booking.model";
+import { MemberStatusRequest } from "./booking.model";
 import { ConfirmBooking } from "./components/ConfirmBooking";
-import { StatusLabel } from "./components/StatusLabel";
+import moment from "moment";
 
 export const RestaurantBooking = () => {
   const [open, setOpen] = useState(false);
@@ -71,8 +68,8 @@ export const RestaurantBooking = () => {
   const acceptInvitationButton = () => {
     if (bookingRequest) {
       if (
-        bookingRequest.restaurant_approved == 1 ||
-        bookingRequest.restaurant_approved == 3
+        bookingRequest.restaurant_approved === 1 ||
+        bookingRequest.restaurant_approved === 3
       ) {
         return (
           <Button
@@ -92,8 +89,8 @@ export const RestaurantBooking = () => {
   const declineInvitationButton = () => {
     if (bookingRequest) {
       if (
-        bookingRequest.restaurant_approved == 2 ||
-        bookingRequest.restaurant_approved == 1
+        bookingRequest.restaurant_approved === 2 ||
+        bookingRequest.restaurant_approved === 1
       ) {
         return (
           <Button
@@ -181,7 +178,10 @@ export const RestaurantBooking = () => {
                       {bookingRequest.title}
                     </p>
                     <p className="pb-1">
-                      <span className="font-bold">Time: </span> {getDate()}
+                      <span className="font-bold">Time: </span>{" "}
+                      {moment(bookingRequest.meeting_time)
+                        .zone("+0000")
+                        .format("MMMM Do YYYY, h:mm:ss a")}
                     </p>
                     <p className="pb-1">
                       <span className="font-bold"> Organizer: </span>{" "}
@@ -192,19 +192,6 @@ export const RestaurantBooking = () => {
                       <span className="font-bold"> Number of People: </span>{" "}
                       {bookingRequest.party_size_adults}
                     </p>
-                    {/* <div>
-   <p className="text-neutral-400 text-sm">Participants</p>
-   <div className="justify-content-center">
-     {bookingRequest.people?.map(
-       (participant: RestaurantPeople) => (
-         <ChipParticipant
-           key={participant.name + Math.random()}
-           name={participant.name}
-         />
-       )
-     )}
-   </div>
- </div> */}
                   </div>
 
                   <div className="flex justify-center mt-3 gap-3">

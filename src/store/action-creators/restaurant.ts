@@ -6,8 +6,37 @@ import { RestaurantSearchRequest } from "../../pages/restaurant/restaurant.model
 import {
   FETCH_RESTAURANT_URL,
   UPLOAD_RESTAURANT_EXCEL,
+  ADMIN_ADD_RESTAURANT,
 } from "../../service/url";
 import { convertObjectToQueryString } from "../../utils/generalHelpters";
+import { toast } from "react-toastify";
+
+export const addRestaurant = (data: any) => (dispatch: Dispatch<Action>) => {
+  let formData = new FormData();
+
+  for (var key in data) {
+    formData.append(key, data[key]);
+  }
+  dispatch({
+    type: RestaurantActionType.START_LOAD_RESTAURANT,
+  });
+  axios
+    .post(`${ADMIN_ADD_RESTAURANT}`, formData, {
+      headers: { "Content-Type": "multipart/form-data" },
+    })
+    .then((response: any) => {
+      toast.success("Restaurant added successfully");
+      dispatch({
+        type: RestaurantActionType.END_LOAD_RESTAURANT,
+      });
+    })
+    .catch((err) => {
+      dispatch({
+        type: RestaurantActionType.END_LOAD_RESTAURANT,
+        payload: err.message,
+      });
+    });
+};
 
 export const uploadRestaurantExcel =
   (file: File) => (dispatch: Dispatch<Action>) => {

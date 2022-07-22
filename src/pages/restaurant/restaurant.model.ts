@@ -21,3 +21,23 @@ export interface RestaurantList {
   total?: number;
   place?: Array<Restaurant>;
 }
+
+export interface IAddRestaurant {
+  name: string;
+  manager: string;
+  description: string;
+  latitude: string;
+  longitude: string;
+  city: string;
+  address: string;
+  reservation: string;
+  startAm: string;
+  stopAm: string;
+  startPm: string;
+  stopPm: string;
+  closingDay: string;
+  phone: string;
+  email: string;
+  picture: any;
+  menu: any;
+}

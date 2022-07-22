@@ -2,7 +2,6 @@ import React, { useEffect, useRef, useState } from "react";
 import { useActions } from "../../hooks/useBooking";
 import { useSelector } from "../../hooks/useTypesSelector";
 import Pagination from "@mui/material/Pagination";
-import moment from "moment";
 
 import { BookingList } from "./components/BookingList";
 
