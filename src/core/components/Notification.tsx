@@ -9,6 +9,7 @@ export default function Notification() {
   const { error } = useSelector((state) => state.restaurant);
   const [open, setOpen] = React.useState(false);
   const showNotification = () => {
+    console.log("error ", error);
     if (error) {
       setOpen(true);
     }
