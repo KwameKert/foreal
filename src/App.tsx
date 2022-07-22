@@ -12,6 +12,7 @@ import AppLoader from "./core/components/AppLoader";
 import { RestaurantDetail } from "./pages/restaurant/RestaurantDetail";
 import { RestaurantBooking } from "./bookings/RestaurantBooking";
 import { BookingDetail } from "./pages/booking/BookingDetail";
+import { ToastContainer } from "react-toastify";
 
 function App() {
   return (
@@ -34,6 +35,7 @@ function App() {
           </Routes>
         </ThemeProvider>
       </div>
+      <ToastContainer />
       <Notification />
     </>
   );

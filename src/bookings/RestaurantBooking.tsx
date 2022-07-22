@@ -68,8 +68,8 @@ export const RestaurantBooking = () => {
   const acceptInvitationButton = () => {
     if (bookingRequest) {
       if (
-        bookingRequest.restaurant_approved == 1 ||
-        bookingRequest.restaurant_approved == 3
+        bookingRequest.restaurant_approved === 1 ||
+        bookingRequest.restaurant_approved === 3
       ) {
         return (
           <Button
@@ -89,8 +89,8 @@ export const RestaurantBooking = () => {
   const declineInvitationButton = () => {
     if (bookingRequest) {
       if (
-        bookingRequest.restaurant_approved == 2 ||
-        bookingRequest.restaurant_approved == 1
+        bookingRequest.restaurant_approved === 2 ||
+        bookingRequest.restaurant_approved === 1
       ) {
         return (
           <Button

@@ -5,6 +5,7 @@ import { RestaurantList } from "../../pages/restaurant/restaurant.model";
 interface RestaurantState {
   restaurants: RestaurantList;
   loading: boolean;
+  success: boolean;
   error: string | null;
 }
 
@@ -12,6 +13,7 @@ const initialState: RestaurantState = {
   restaurants: {},
   loading: false,
   error: null,
+  success: false,
 };
 
 const reducer = (
