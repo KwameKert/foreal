@@ -3,7 +3,7 @@ import { FunctionComponent } from "react";
 
 type AppButtonProps = {
   variant?: "text" | "outlined" | "contained" | undefined;
-  color: "primary" | "success" | "error" | "secondary" | "info" | undefined;
+  color?: "primary" | "success" | "error" | "secondary" | "info" | undefined;
   text: string;
   icon?: any;
   size?: any;

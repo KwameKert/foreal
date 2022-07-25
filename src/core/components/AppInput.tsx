@@ -38,9 +38,8 @@ export const AppInput: FunctionComponent<AppInputProps> = ({
           type={type}
           fullWidth
         />
+        {error && <div className="text-red-500">{error}</div>}
       </div>
-
-      {error && <div className="text-red-500">{error}</div>}
     </>
 
     // <>

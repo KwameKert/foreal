@@ -5,6 +5,8 @@ import UploadFileIcon from "@mui/icons-material/UploadFile";
 import { useActions } from "../../hooks/useRestaurant";
 import { useSelector } from "../../hooks/useTypesSelector";
 import Pagination from "@mui/material/Pagination";
+import AddIcon from "@mui/icons-material/Add";
+import { AddRestaurant } from "./components/AddRestaurant";
 
 const PER_PAGE = 10;
 
@@ -45,9 +47,7 @@ export const Restaurant = () => {
     event: React.ChangeEvent<unknown>,
     value: number
   ) => {
-    console.log("value ", value);
     setCurrentPage(value);
-    console.log("current Page", currentPage);
     fetchRestaurant({ size: 10, page: value - 1 });
   };
   return (
@@ -56,21 +56,24 @@ export const Restaurant = () => {
         <div className="self-center">
           <p className="text-2xl font-semibold">Restaurants</p>
         </div>
-        <input
-          type="file"
-          id="file"
-          ref={inputFile}
-          style={{ display: "none" }}
-          onChange={onChangeFile.bind(this)}
-        />
-        <AppButton
-          color="primary"
-          variant="outlined"
-          text="Upload excel"
-          icon={<UploadFileIcon />}
-          buttonStyles="bg-red-500 text-gray-500"
-          handleClick={selectFile}
-        />
+        <div className="flex gap-3">
+          <AddRestaurant />
+          <input
+            type="file"
+            id="file"
+            ref={inputFile}
+            style={{ display: "none" }}
+            onChange={onChangeFile.bind(this)}
+          />
+          <AppButton
+            color="primary"
+            variant="outlined"
+            text="Upload excel"
+            icon={<UploadFileIcon />}
+            buttonStyles="bg-red-500 text-gray-500"
+            handleClick={selectFile}
+          />
+        </div>
       </div>
       <RestaurantList restaurants={restaurants} />
       <div className="flex justify-center py-2">

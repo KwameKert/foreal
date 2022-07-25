@@ -1,47 +1,20 @@
 import { Action } from "../actions/booking";
 import { BookingActionType } from "../action-types";
-
-export interface Place {
-  place_id: number;
-  place_name: string;
-  place_latitude: number;
-  place_longitude: number;
-  place_city: string;
-  place_image: string;
-}
-
-export interface Person {
-  booking_member_id: number;
-  member_email: string;
-  member_name: string;
-  bmstatus: number;
-  username: string;
-  user_image: string;
-}
-
-export interface Invitation {
-  booking_id?: number;
-  title?: string;
-  meeting_time?: Date;
-  moment_creator?: number;
-  moment_id?: number;
-  booked_by?: number;
-  status?: number;
-  expired?: number;
-  restaurant_approved?: number;
-  creator_name?: any;
-  place?: Place;
-  people?: Person[];
-}
+import { Booking, Invitation } from "../../bookings/booking.model";
+import { BookingList } from "../../pages/booking/booking.model";
 
 interface BookState {
   invitation: Invitation;
+  bookingList: BookingList;
+  bookingRequest: Booking;
   loading: boolean;
   error: string | null;
 }
 
 const initialState = {
   invitation: {},
+  bookingList: {},
+  bookingRequest: {},
   loading: false,
   error: null,
 };
@@ -62,9 +35,33 @@ const reducer = (
         loading: false,
         invitation: action.payload,
       };
-    case BookingActionType.START_LOAD_INVITATION:
+    case BookingActionType.SET_ADMIN_INVITATION:
+      console.log("action.payload", action.payload);
       return {
         ...state,
+        loading: false,
+        bookingList: action.payload,
+      };
+    case BookingActionType.SET_BOOKING:
+      return {
+        ...state,
+        bookingRequest: action.payload,
+        loading: false,
+      };
+
+    case BookingActionType.UPDATE_BOOKING:
+      return {
+        ...state,
+        bookingRequest: {
+          ...state.bookingRequest,
+          restaurant_approved: action.payload.value,
+        },
+        loading: false,
+      };
+    case BookingActionType.END_LOAD_INVITATION:
+      return {
+        ...state,
+        error: action.payload,
         loading: false,
       };
     default:
