@@ -1,4 +1,4 @@
-let environment = "dev";
+let environment = "prod";
 
 const generateEnvVariables = () => {
   if (environment === "dev") {
