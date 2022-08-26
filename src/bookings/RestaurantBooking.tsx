@@ -27,23 +27,23 @@ export const RestaurantBooking = () => {
   function padTo2Digits(num: number) {
     return num?.toString().padStart(2, "0");
   }
-  const getDate = () => {
-    let dateStr = String(bookingRequest.meeting_time);
-    let date: Date = new Date(dateStr.toString());
-    return (
-      [
-        date?.getFullYear(),
-        padTo2Digits(date?.getMonth() + 1),
-        padTo2Digits(date?.getDate()),
-      ].join("-") +
-      " " +
-      [
-        padTo2Digits(date?.getHours()),
-        padTo2Digits(date?.getMinutes()),
-        padTo2Digits(date?.getSeconds()),
-      ].join(":")
-    );
-  };
+  // const getDate = () => {
+  //   let dateStr = String(bookingRequest.meeting_time);
+  //   let date: Date = new Date(dateStr.toString());
+  //   return (
+  //     [
+  //       date?.getFullYear(),
+  //       padTo2Digits(date?.getMonth() + 1),
+  //       padTo2Digits(date?.getDate()),
+  //     ].join("-") +
+  //     " " +
+  //     [
+  //       padTo2Digits(date?.getHours()),
+  //       padTo2Digits(date?.getMinutes()),
+  //       padTo2Digits(date?.getSeconds()),
+  //     ].join(":")
+  //   );
+  // };
 
   const handleDialogResponse = (response: boolean) => {
     setOpen(false);

@@ -17,7 +17,7 @@ export const login =
         payload: {},
       });
       window.location.replace("/app/dashboard");
-    }, 5000);
+    }, 2000);
     // axios
     //   .post("/auth/login", request)
     //   .then((response: any) => {
