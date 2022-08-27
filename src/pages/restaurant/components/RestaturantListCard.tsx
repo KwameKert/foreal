@@ -21,18 +21,18 @@ export const RestaurantListCard: FunctionComponent<RestaurantListCardProps> = ({
   };
   return (
     <div
-      className=" rounded-2xl bg-white p-5  cursor-pointer"
+      className="max-w-sm rounded overflow-hidden shadow-lg  cursor-pointer "
       onClick={handleRestaurantClick}
     >
-      <Avatar alt="Remy Sharp" src={restaurant.profileImage} />
-      <p className="text-lg	font-semibold mb-3"> {restaurant.name}</p>
-      <p className="font-light text-sm">
-        <MapIcon />
-        {restaurant.address}
-      </p>
-      <p className="font-light italic text-sm">
-        <LocationOnIcon /> {restaurant.city}
-      </p>
+      <img
+        className="w-full"
+        src={restaurant.profileImage}
+        alt="Sunset in the mountains"
+      />
+      <div className="px-6 py-4">
+        <div className="font-bold text-lg">{restaurant.name}</div>
+        <p className="text-gray-700 text-base italic">{restaurant.address}</p>
+      </div>
     </div>
   );
 };

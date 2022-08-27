@@ -15,7 +15,7 @@ export const RestaurantList: FunctionComponent<RestaurantListProps> = ({
   return (
     <>
       <RestaurantSearch />
-      <div className="grid grid-cols-3 gap-4">
+      <div className="grid grid-cols-4 gap-4">
         {restaurants.place?.map((restaurant) => (
           <RestaurantListCard restaurant={restaurant} key={restaurant.id} />
         ))}
