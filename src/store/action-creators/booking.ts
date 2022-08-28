@@ -45,7 +45,6 @@ export const getAllBookings =
     axios
       .get(`${ADMIN_FETCH_INVITATION}/?${queryString}`)
       .then((response: any) => {
-        console.log("response", response);
         dispatch({
           type: BookingActionType.SET_ADMIN_INVITATION,
           payload: response.data,
