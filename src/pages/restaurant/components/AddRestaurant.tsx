@@ -271,7 +271,6 @@ export const AddRestaurant: FunctionComponent<RestaurantListCardProps> = ({
               value={formik.values.description}
               error={formik.errors.description}
             />
-
             <div className="flex gap-2">
               <div>
                 <p>Picture</p>
