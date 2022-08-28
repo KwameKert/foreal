@@ -14,6 +14,7 @@ import Button from "@mui/material/Button";
 import { AppInput } from "../../../core/components/AppInput";
 import { useMediaQuery, useTheme } from "@mui/material";
 import { Restaurant } from "../restaurant.model";
+import { AppSelect } from "../../../core/components/AppSelect";
 
 type RestaurantListCardProps = {
   restaurant?: Restaurant;
@@ -42,6 +43,7 @@ export const AddRestaurant: FunctionComponent<RestaurantListCardProps> = ({
   const initialValues = {
     id: restaurant?.id,
     name: restaurant?.name,
+    categoryId: 0,
     manager: "1",
     longitude: restaurant?.longitude,
     latitude: restaurant?.latitude,
@@ -66,6 +68,12 @@ export const AddRestaurant: FunctionComponent<RestaurantListCardProps> = ({
     },
   });
   const handleRestaurantSubmission = (values: Restaurant) => {
+    if (!values.email) {
+      values.email = "marco@foreal.app";
+    }
+    if (!values.phone) {
+      values.phone = "+393467746393";
+    }
     if (values.id) {
       updateRestaurant(values);
     } else {
@@ -139,6 +147,15 @@ export const AddRestaurant: FunctionComponent<RestaurantListCardProps> = ({
                 onChange={formik.handleChange}
                 value={formik.values.name}
                 error={formik.errors.name}
+              />
+              <AppSelect
+                variant="standard"
+                label="Category"
+                name="categoryId"
+                inputClass="w-full py-2"
+                onChange={formik.handleChange}
+                value={formik.values.categoryId}
+                error={formik.errors.categoryId}
               />
             </div>
 

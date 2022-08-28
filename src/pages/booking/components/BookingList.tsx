@@ -58,7 +58,7 @@ export const BookingList: FunctionComponent<InvitationListProps> = ({
           {bookings?.map((booking) => (
             <TableRow
               hover
-              key={booking.booking_id}
+              key={Math.random() + "- " + booking.booking_id}
               sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
               onClick={() => viewInvitationDetails(booking)}
             >

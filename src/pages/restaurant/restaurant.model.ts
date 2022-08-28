@@ -30,6 +30,7 @@ export interface Restaurant {
   latitude?: string;
   longitude?: string;
   city?: string;
+  categoryId?: number;
   address?: string;
   reservation?: boolean;
   startAm?: string;
