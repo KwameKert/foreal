@@ -138,7 +138,7 @@ export const BookingDetail: FunctionComponent<BookingDetailProps> = ({}) => {
               <div className="py-4">
                 <p className="text-slate-500">Meeting time </p>
                 <p className="font-semibold">
-                  {moment(bookingRequest.meeting_time)
+                  {moment(booking.meeting_time)
                     .zone("+0000")
                     .format("MMMM Do YYYY, h:mm:ss a")}
                 </p>

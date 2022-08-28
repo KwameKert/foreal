@@ -22,6 +22,7 @@ export interface RestaurantList {
   place?: Array<Restaurant>;
 }
 
+
 export interface Restaurant {
   id?: number;
   name?: string;
@@ -42,4 +43,5 @@ export interface Restaurant {
   email?: string;
   profileImage?: any;
   menu?: any;
+
 }

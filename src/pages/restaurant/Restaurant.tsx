@@ -5,10 +5,12 @@ import UploadFileIcon from "@mui/icons-material/UploadFile";
 import { useActions } from "../../hooks/useRestaurant";
 import { useSelector } from "../../hooks/useTypesSelector";
 import Pagination from "@mui/material/Pagination";
+
 import { AddRestaurant } from "./components/AddRestaurant";
 import { Tooltip, IconButton } from "@mui/material";
 import InfoIcon from "@mui/icons-material/Info";
 const PER_PAGE = 12;
+
 
 export const Restaurant = () => {
   const { uploadRestaurantExcel, fetchRestaurant } = useActions();
@@ -68,6 +70,7 @@ export const Restaurant = () => {
             labore, vel
           </p>
         </div>
+
       </div>
       <div className="flex flex-row-reverse gap-3 mt-4 ">
         <AddRestaurant />
@@ -86,6 +89,7 @@ export const Restaurant = () => {
           buttonStyles="bg-red-500 text-gray-500"
           handleClick={selectFile}
         />
+
       </div>
       <RestaurantList restaurants={restaurants} />
       <div className="flex justify-center py-2">

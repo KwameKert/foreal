@@ -38,6 +38,7 @@ export const addRestaurant = (data: any) => (dispatch: Dispatch<Action>) => {
     });
 };
 
+
 export const updateRestaurant = (data: any) => (dispatch: Dispatch<Action>) => {
   let formData = new FormData();
   for (var key in data) {

@@ -1,6 +1,7 @@
 import { AppButton } from "../../../core/components/AppButton";
 import AddIcon from "@mui/icons-material/Add";
 import React, { FunctionComponent, useRef } from "react";
+
 import * as Yup from "yup";
 import { useFormik } from "formik";
 import { useActions } from "../../../hooks/useRestaurant";
@@ -27,6 +28,7 @@ export const AddRestaurant: FunctionComponent<RestaurantListCardProps> = ({
   const theme = useTheme();
   const { loading, error } = useSelector((state) => state.restaurant);
   const { addRestaurant, fetchRestaurant, updateRestaurant } = useActions();
+
 
   const fullScreen = useMediaQuery(theme.breakpoints.down("lg"));
   const [open, setOpen] = React.useState(false);
@@ -79,6 +81,7 @@ export const AddRestaurant: FunctionComponent<RestaurantListCardProps> = ({
     } else {
       addRestaurant(values);
     }
+
     setOpen(false);
     fetchRestaurant({ size: 10, page: 0 });
   };
@@ -157,6 +160,7 @@ export const AddRestaurant: FunctionComponent<RestaurantListCardProps> = ({
                 value={formik.values.categoryId}
                 error={formik.errors.categoryId}
               />
+
             </div>
 
             <div className="flex gap-2">
