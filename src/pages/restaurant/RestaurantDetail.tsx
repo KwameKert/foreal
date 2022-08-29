@@ -56,7 +56,11 @@ export const RestaurantDetail: FunctionComponent<
         </div>
       </div>
       <div className="flex flex-row-reverse gap-3 mt-4 ">
-        <AddRestaurant restaurant={restaurant} label="Edit Restaurant" />
+        <AddRestaurant
+          restaurant={restaurant}
+          label="Edit Restaurant"
+          onDone={() => fetchRestaurantById(Number(params.id))}
+        />
       </div>
       <div className="w-2/3">
         <img
