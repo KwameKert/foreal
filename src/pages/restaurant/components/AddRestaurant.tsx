@@ -19,10 +19,12 @@ import { categories } from "../../../utils/data";
 
 type RestaurantListCardProps = {
   restaurant?: Restaurant;
+  onDone?: any;
   label?: string;
 };
 export const AddRestaurant: FunctionComponent<RestaurantListCardProps> = ({
   restaurant,
+  onDone,
   label = "Add Restaraunt",
 }) => {
   const theme = useTheme();
@@ -48,7 +50,7 @@ export const AddRestaurant: FunctionComponent<RestaurantListCardProps> = ({
   const initialValues = {
     id: restaurant?.id,
     name: restaurant?.name,
-    categoryId: 0,
+    categoryId: restaurant?.categoryId,
     manager: "1",
     longitude: restaurant?.longitude,
     latitude: restaurant?.latitude,
@@ -84,8 +86,10 @@ export const AddRestaurant: FunctionComponent<RestaurantListCardProps> = ({
     } else {
       addRestaurant(values);
     }
-    setOpen(false);
-    fetchRestaurant({ size: 10, page: 0 });
+    if (!error) {
+      setOpen(false);
+      onDone();
+    }
   };
   const handleClickOpen = () => {
     setOpen(true);
