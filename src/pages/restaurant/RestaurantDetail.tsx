@@ -12,6 +12,7 @@ import InfoIcon from "@mui/icons-material/Info";
 import LocalPhoneIcon from "@mui/icons-material/LocalPhone";
 import AlternateEmailIcon from "@mui/icons-material/AlternateEmail";
 import BeenhereIcon from "@mui/icons-material/Beenhere";
+import { categories } from "../../utils/data";
 type RestaurantDetailProps = {};
 
 export const RestaurantDetail: FunctionComponent<
@@ -87,7 +88,9 @@ export const RestaurantDetail: FunctionComponent<
             <BeenhereIcon className="mt-2 mr-2" />
             <div>
               <p className="text-zinc-400 text-base">Category</p>
-              <p className="font-semibold">{restaurant.reservation}</p>
+              <p className="font-semibold">
+                {categories.at(Number(restaurant.categoryId))}
+              </p>
             </div>
           </div>
           <div className="flex">
