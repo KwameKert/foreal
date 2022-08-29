@@ -15,45 +15,10 @@ export const RestaurantList: FunctionComponent<RestaurantListProps> = ({
   return (
     <>
       <RestaurantSearch />
-      <div className="">
-        <div className="w-full flex flex-col gap-4 ">
-          {restaurants.place?.map((restaurant) => (
-            <RestaurantListCard
-              restaurant={restaurant}
-              key={restaurant.place_id}
-            />
-          ))}
-
-          {/* <TableContainer component={Paper}>
-            <Table sx={{ minWidth: 650 }} aria-label="simple table">
-              <TableHead>
-                <TableRow>
-                  <TableCell>Name</TableCell>
-                  <TableCell align="center">Address</TableCell>
-                  <TableCell align="center">Country</TableCell>
-                  <TableCell align="center">No. invites</TableCell>
-                  <TableCell align="center">Created At</TableCell>
-                </TableRow>
-              </TableHead>
-              <TableBody>
-                {rows.map((row) => (
-                  <TableRow
-                    key={row.name}
-                    sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
-                  >
-                    <TableCell component="th" scope="row">
-                      {row.name}
-                    </TableCell>
-                    <TableCell align="center">{row.location}</TableCell>
-                    <TableCell align="center">{row.country}</TableCell>
-                    <TableCell align="center">{row.invites}</TableCell>
-                    <TableCell align="center">{row.createdAt}</TableCell>
-                  </TableRow>
-                ))}
-              </TableBody>
-            </Table>
-          </TableContainer> */}
-        </div>
+      <div className="grid grid-cols-4 gap-4">
+        {restaurants.place?.map((restaurant) => (
+          <RestaurantListCard restaurant={restaurant} key={restaurant.id} />
+        ))}
       </div>
     </>
   );

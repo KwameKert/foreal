@@ -5,10 +5,10 @@ import UploadFileIcon from "@mui/icons-material/UploadFile";
 import { useActions } from "../../hooks/useRestaurant";
 import { useSelector } from "../../hooks/useTypesSelector";
 import Pagination from "@mui/material/Pagination";
-import AddIcon from "@mui/icons-material/Add";
 import { AddRestaurant } from "./components/AddRestaurant";
-
-const PER_PAGE = 10;
+import { Tooltip, IconButton } from "@mui/material";
+import InfoIcon from "@mui/icons-material/Info";
+const PER_PAGE = 12;
 
 export const Restaurant = () => {
   const { uploadRestaurantExcel, fetchRestaurant } = useActions();
@@ -18,6 +18,10 @@ export const Restaurant = () => {
   useEffect(() => {
     fetchRestaurant({ size: PER_PAGE, page: currentPage - 1 });
   }, []);
+
+  const loadList = () => {
+    fetchRestaurant({ size: PER_PAGE, page: currentPage - 1 });
+  };
 
   const inputFile = useRef<any>(null);
   const selectFile = () => {
@@ -48,32 +52,44 @@ export const Restaurant = () => {
     value: number
   ) => {
     setCurrentPage(value);
-    fetchRestaurant({ size: 10, page: value - 1 });
+    fetchRestaurant({ size: PER_PAGE, page: value - 1 });
   };
   return (
     <>
       <div className="flex flex-row justify-between">
-        <div className="self-center">
-          <p className="text-2xl font-semibold">Restaurants</p>
+        <div className="self-center ">
+          <p className="text-2xl font-semibold">
+            Restaurants
+            <Tooltip title="More">
+              <IconButton>
+                <InfoIcon />
+              </IconButton>
+            </Tooltip>
+          </p>
+          <p className="w-3/4">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Reiciendis
+            nisi provident numquam labore, vel Reiciendis nisi provident numquam
+            labore, vel
+          </p>
         </div>
-        <div className="flex gap-3">
-          <AddRestaurant />
-          <input
-            type="file"
-            id="file"
-            ref={inputFile}
-            style={{ display: "none" }}
-            onChange={onChangeFile.bind(this)}
-          />
-          <AppButton
-            color="primary"
-            variant="outlined"
-            text="Upload excel"
-            icon={<UploadFileIcon />}
-            buttonStyles="bg-red-500 text-gray-500"
-            handleClick={selectFile}
-          />
-        </div>
+      </div>
+      <div className="flex flex-row-reverse gap-3 mt-4 ">
+        <AddRestaurant onDone={() => loadList()} />
+        <input
+          type="file"
+          id="file"
+          ref={inputFile}
+          style={{ display: "none" }}
+          onChange={onChangeFile.bind(this)}
+        />
+        <AppButton
+          color="primary"
+          variant="outlined"
+          text="Upload excel"
+          icon={<UploadFileIcon />}
+          buttonStyles="bg-red-500 text-gray-500"
+          handleClick={selectFile}
+        />
       </div>
       <RestaurantList restaurants={restaurants} />
       <div className="flex justify-center py-2">

@@ -36,7 +36,6 @@ const reducer = (
         invitation: action.payload,
       };
     case BookingActionType.SET_ADMIN_INVITATION:
-      console.log("action.payload", action.payload);
       return {
         ...state,
         loading: false,
