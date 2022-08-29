@@ -19,6 +19,10 @@ export const Restaurant = () => {
     fetchRestaurant({ size: PER_PAGE, page: currentPage - 1 });
   }, []);
 
+  const loadList = () => {
+    fetchRestaurant({ size: PER_PAGE, page: currentPage - 1 });
+  };
+
   const inputFile = useRef<any>(null);
   const selectFile = () => {
     if (inputFile.current) {
@@ -70,7 +74,7 @@ export const Restaurant = () => {
         </div>
       </div>
       <div className="flex flex-row-reverse gap-3 mt-4 ">
-        <AddRestaurant />
+        <AddRestaurant onDone={() => loadList()} />
         <input
           type="file"
           id="file"
