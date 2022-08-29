@@ -52,8 +52,10 @@ export const updateRestaurant = (data: any) => (dispatch: Dispatch<Action>) => {
     })
     .then((response: any) => {
       toast.success("Restaurant updated successfully");
+      console.log("response ", response.data.data);
       dispatch({
-        type: RestaurantActionType.END_LOAD_RESTAURANT,
+        type: RestaurantActionType.SET_RESTAURANT_DETAILS,
+        payload: response.data.data,
       });
     })
     .catch((err) => {
@@ -114,6 +116,7 @@ export const fetchRestaurant =
 
 export const fetchRestaurantById =
   (id: number) => (dispatch: Dispatch<Action>) => {
+    console.log("im here");
     dispatch({
       type: RestaurantActionType.START_FETCH_RESTAURANT,
     });
