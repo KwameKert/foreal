@@ -15,6 +15,7 @@ import { AppInput } from "../../../core/components/AppInput";
 import { useMediaQuery, useTheme } from "@mui/material";
 import { Restaurant } from "../restaurant.model";
 import { AppSelect } from "../../../core/components/AppSelect";
+import { categories } from "../../../utils/data";
 
 type RestaurantListCardProps = {
   restaurant?: Restaurant;
@@ -38,6 +39,10 @@ export const AddRestaurant: FunctionComponent<RestaurantListCardProps> = ({
     longitude: Yup.string().required("Longitude is required"),
     latitude: Yup.string().required("Latitude is required"),
     description: Yup.string().required("Description is required"),
+    stopPm: Yup.number().required("Stop pm is required"),
+    stopAm: Yup.number().required("Stop am is required"),
+    startPm: Yup.number().required("Start pm is required"),
+    startAm: Yup.number().required("Start am is required"),
   });
 
   const initialValues = {
@@ -149,6 +154,7 @@ export const AddRestaurant: FunctionComponent<RestaurantListCardProps> = ({
                 error={formik.errors.name}
               />
               <AppSelect
+                list={categories}
                 variant="standard"
                 label="Category"
                 name="categoryId"

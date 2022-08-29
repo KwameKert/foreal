@@ -7,6 +7,7 @@ import { MenuItem } from "@mui/material";
 type AppInputProps = {
   variant: "standard" | "filled" | "outlined" | undefined;
   label: string;
+  list: string[];
   onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
   value?: number;
   type?: string;
@@ -15,22 +16,11 @@ type AppInputProps = {
   inputClass?: string;
 };
 
-const currencies = [
-  "Meat lover",
-  "Sea lover",
-  "Traditional",
-  "Exotic",
-  "Gourmet",
-  "Cheap and Good",
-  "Street food",
-  "Pizza Night",
-  "Chill Out",
-];
-
 export const AppSelect: FunctionComponent<AppInputProps> = ({
   variant,
   name,
   label,
+  list,
   value,
   onChange,
   inputClass = "w-full",
@@ -52,8 +42,8 @@ export const AppSelect: FunctionComponent<AppInputProps> = ({
           type={type}
           fullWidth
         >
-          {currencies.map((option) => (
-            <MenuItem key={option} value={currencies.indexOf(option)}>
+          {list.map((option) => (
+            <MenuItem key={option} value={list.indexOf(option)}>
               {option}
             </MenuItem>
           ))}
