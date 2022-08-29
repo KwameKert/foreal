@@ -52,7 +52,6 @@ export const updateRestaurant = (data: any) => (dispatch: Dispatch<Action>) => {
     })
     .then((response: any) => {
       toast.success("Restaurant updated successfully");
-      console.log("response ", response.data.data);
       dispatch({
         type: RestaurantActionType.SET_RESTAURANT_DETAILS,
         payload: response.data.data,

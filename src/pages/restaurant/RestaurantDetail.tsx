@@ -59,7 +59,7 @@ export const RestaurantDetail: FunctionComponent<
         <AddRestaurant
           restaurant={restaurant}
           label="Edit Restaurant"
-          // onDone={() => fetchRestaurantById(Number(params.id))}
+          onDone={() => {}}
         />
       </div>
       <div className="w-2/3">
