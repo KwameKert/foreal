@@ -25,6 +25,7 @@ export interface Booking {
   place_phone: string;
   place_city: string;
   place_address: string;
+  restaurant_approved: string;
   creator_name: string;
   creator_bio?: any;
   creator_pix: string;

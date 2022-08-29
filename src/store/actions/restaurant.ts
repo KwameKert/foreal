@@ -4,6 +4,10 @@ interface RestaurantSetListAction {
   type: RestaurantActionType.SET_RESTAURANT_LIST;
   payload: any;
 }
+interface RestaurantSetDetailsAction {
+  type: RestaurantActionType.SET_RESTAURANT_DETAILS;
+  payload: any;
+}
 
 interface RestaurantStartLoadAction {
   type: RestaurantActionType.START_LOAD_RESTAURANT;
@@ -33,4 +37,5 @@ export type Action =
   | RestaurantEndLoadAction
   | RestaurantUploadLoadAction
   | RestaurantStartFetchAction
-  | RestaurantEndFetchAction;
+  | RestaurantEndFetchAction
+  | RestaurantSetDetailsAction;

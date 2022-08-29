@@ -6,7 +6,7 @@ import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 import { METHODS } from "http";
 
 type StatusProps = {
-  restaurant_approved: number ;
+  restaurant_approved: number;
 };
 interface data {
   color: "primary" | "success" | "error" | "secondary" | "info" | undefined;
@@ -15,21 +15,21 @@ interface data {
 }
 const MEMBER_STATUS: Array<data> = [
   {
-    label: "Resturant pending",
+    label: "Pending",
     icon: <HourglassFullIcon />,
     color: "secondary",
   },
   {
-    label: "Resturant pending",
+    label: "Pending",
     icon: <HourglassFullIcon />,
     color: "secondary",
   },
   {
-    label: "Restaturant accepted",
+    label: "Accepted",
     icon: <CheckCircleIcon />,
     color: "success",
   },
-  { label: "Restaturant rejected", icon: <CancelIcon />, color: "error" },
+  { label: "Rejected", icon: <CancelIcon />, color: "error" },
 ];
 export const StatusLabel: FunctionComponent<StatusProps> = ({
   restaurant_approved,

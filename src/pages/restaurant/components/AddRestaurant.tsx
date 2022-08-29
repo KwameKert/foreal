@@ -1,6 +1,6 @@
 import { AppButton } from "../../../core/components/AppButton";
 import AddIcon from "@mui/icons-material/Add";
-import React, { useRef } from "react";
+import React, { FunctionComponent, useRef } from "react";
 import * as Yup from "yup";
 import { useFormik } from "formik";
 import { useActions } from "../../../hooks/useRestaurant";
@@ -13,12 +13,23 @@ import DialogTitle from "@mui/material/DialogTitle";
 import Button from "@mui/material/Button";
 import { AppInput } from "../../../core/components/AppInput";
 import { useMediaQuery, useTheme } from "@mui/material";
-import { IAddRestaurant } from "../restaurant.model";
+import { Restaurant } from "../restaurant.model";
+import { AppSelect } from "../../../core/components/AppSelect";
+import { categories } from "../../../utils/data";
 
-export const AddRestaurant = () => {
+type RestaurantListCardProps = {
+  restaurant?: Restaurant;
+  onDone?: any;
+  label?: string;
+};
+export const AddRestaurant: FunctionComponent<RestaurantListCardProps> = ({
+  restaurant,
+  onDone,
+  label = "Add Restaraunt",
+}) => {
   const theme = useTheme();
-  const { loading, error, success } = useSelector((state) => state.restaurant);
-  const { addRestaurant, fetchRestaurant } = useActions();
+  const { loading, error } = useSelector((state) => state.restaurant);
+  const { addRestaurant, fetchRestaurant, updateRestaurant } = useActions();
 
   const fullScreen = useMediaQuery(theme.breakpoints.down("lg"));
   const [open, setOpen] = React.useState(false);
@@ -29,43 +40,56 @@ export const AddRestaurant = () => {
     name: Yup.string().required("Name is required"),
     longitude: Yup.string().required("Longitude is required"),
     latitude: Yup.string().required("Latitude is required"),
-    reservation: Yup.string().required("Reservation is required"),
-    startAm: Yup.string().required("Time is required"),
-    startPm: Yup.string().required("Time is required"),
-    stopAm: Yup.string().required("Time is required"),
-    stopPm: Yup.string().required("Time is required"),
     description: Yup.string().required("Description is required"),
+    stopPm: Yup.number().required("Stop pm is required"),
+    stopAm: Yup.number().required("Stop am is required"),
+    startPm: Yup.number().required("Start pm is required"),
+    startAm: Yup.number().required("Start am is required"),
   });
+
   const initialValues = {
-    name: "",
+    id: restaurant?.id,
+    name: restaurant?.name,
+    categoryId: restaurant?.categoryId,
     manager: "1",
-    description: "",
-    latitude: "",
-    longitude: "",
-    city: "",
-    address: "",
-    reservation: "1",
-    startAm: "",
-    stopAm: "",
-    startPm: "",
-    stopPm: "",
+    longitude: restaurant?.longitude,
+    latitude: restaurant?.latitude,
+    reservation: restaurant?.reservation,
+    startAm: restaurant?.startAm,
+    startPm: restaurant?.startPm,
+    stopAm: restaurant?.stopAm,
+    stopPm: restaurant?.stopPm,
     closingDay: "0",
-    phone: "",
-    email: "",
-    picture: {},
-    menu: {},
+    phone: restaurant?.phone,
+    email: restaurant?.email,
+    description: restaurant?.description,
+    profilePicture: restaurant?.profileImage,
+    menu: restaurant?.menu,
   };
-  const formik = useFormik<IAddRestaurant>({
+  const formik = useFormik<Restaurant>({
+    enableReinitialize: true,
     initialValues: initialValues,
     validationSchema,
     onSubmit: (values) => {
       handleRestaurantSubmission(values);
     },
   });
-  const handleRestaurantSubmission = (values: IAddRestaurant) => {
-    addRestaurant(values);
-    setOpen(false);
-    fetchRestaurant({ size: 10, page: 0 });
+  const handleRestaurantSubmission = (values: Restaurant) => {
+    if (!values.email) {
+      values.email = "marco@foreal.app";
+    }
+    if (!values.phone) {
+      values.phone = "+393467746393";
+    }
+    if (values.id) {
+      updateRestaurant(values);
+    } else {
+      addRestaurant(values);
+    }
+    if (!error) {
+      setOpen(false);
+      onDone();
+    }
   };
   const handleClickOpen = () => {
     setOpen(true);
@@ -104,7 +128,7 @@ export const AddRestaurant = () => {
     <>
       <AppButton
         variant="outlined"
-        text="Add Restaurant"
+        text={label}
         icon={<AddIcon />}
         buttonStyles="bg-red-500 text-blue-500"
         handleClick={handleClickOpen}
@@ -117,7 +141,7 @@ export const AddRestaurant = () => {
         maxWidth="lg"
       >
         <form onSubmit={formik.handleSubmit}>
-          <DialogTitle>Add Restaurant</DialogTitle>
+          <DialogTitle>{label}</DialogTitle>
           <DialogContent className="md:w-[55rem] w-full ">
             <DialogContentText>
               To add a new restaurant please enter details here.
@@ -132,6 +156,16 @@ export const AddRestaurant = () => {
                 onChange={formik.handleChange}
                 value={formik.values.name}
                 error={formik.errors.name}
+              />
+              <AppSelect
+                list={categories}
+                variant="standard"
+                label="Category"
+                name="categoryId"
+                inputClass="w-full py-2"
+                onChange={formik.handleChange}
+                value={formik.values.categoryId}
+                error={formik.errors.categoryId}
               />
             </div>
 
@@ -247,7 +281,6 @@ export const AddRestaurant = () => {
               value={formik.values.description}
               error={formik.errors.description}
             />
-
             <div className="flex gap-2">
               <div>
                 <p>Picture</p>
