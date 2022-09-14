@@ -92,9 +92,11 @@ export const RestaurantDetail: FunctionComponent<
             <BeenhereIcon className="mt-2 mr-2" />
             <div>
               <p className="text-zinc-400 text-base">Category</p>
-              <p className="font-semibold">
-                {categories.at(Number(restaurant.categoryId))}
-              </p>
+              {restaurant.categoryId && (
+                <p className="font-semibold">
+                  {categories.at(Number(restaurant.categoryId))?.label}
+                </p>
+              )}
             </div>
           </div>
           <div className="flex">
@@ -109,6 +111,13 @@ export const RestaurantDetail: FunctionComponent<
         <div className="mt-12">
           <p className=" font-semibold text-xl">Description</p>
           <p className="font-light">{restaurant.description}</p>
+        </div>
+
+        <div className="mt-12">
+          <p className=" font-semibold text-xl">Reservation</p>
+          <p className="font-light">
+            {restaurant.reservation ? "True" : "False"}
+          </p>
         </div>
       </div>
     </>
