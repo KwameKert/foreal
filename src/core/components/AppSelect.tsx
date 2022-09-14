@@ -7,9 +7,9 @@ import { MenuItem } from "@mui/material";
 type AppInputProps = {
   variant: "standard" | "filled" | "outlined" | undefined;
   label: string;
-  list: string[];
+  list: any;
   onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
-  value?: number;
+  value?: number | boolean;
   type?: string;
   name?: string;
   error?: string;
@@ -42,9 +42,9 @@ export const AppSelect: FunctionComponent<AppInputProps> = ({
           type={type}
           fullWidth
         >
-          {list.map((option) => (
-            <MenuItem key={option} value={list.indexOf(option)}>
-              {option}
+          {list.map((option: any) => (
+            <MenuItem key={option.label} value={option.value}>
+              {option.label}
             </MenuItem>
           ))}
         </TextField>
