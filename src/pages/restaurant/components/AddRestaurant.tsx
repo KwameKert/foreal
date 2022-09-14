@@ -272,6 +272,19 @@ export const AddRestaurant: FunctionComponent<RestaurantListCardProps> = ({
                 error={formik.errors.phone}
               />
             </div>
+            <AppSelect
+              list={[
+                { label: "True", value: 1 },
+                { label: "False", value: 0 },
+              ]}
+              variant="standard"
+              label="Reservation"
+              name="reservation"
+              inputClass="w-full py-2"
+              onChange={formik.handleChange}
+              value={formik.values.reservation}
+              error={formik.errors.reservation}
+            />
             <AppInput
               variant="standard"
               label="Description"
