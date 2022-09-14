@@ -84,7 +84,6 @@ export const AddRestaurant: FunctionComponent<RestaurantListCardProps> = ({
     if (values.id) {
       updateRestaurant(values);
     } else {
-      console.log("values --> ", values);
       addRestaurant(values);
     }
     if (!error) {
