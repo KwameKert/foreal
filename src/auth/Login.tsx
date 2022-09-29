@@ -46,6 +46,8 @@ export function Login() {
         <div className="flex flex-col gap-y-7">
           <div className="md:w-[35rem] w-full p-8  rounded-xl bg-white">
             <AuthHeader
+              title="Foreal"
+              subtitle="Admin's Portal"
               headLine="Let's get you signed in!"
               description="Please fill in your credentials."
             />
