@@ -4,8 +4,11 @@ import { Action } from "../actions/booking";
 import axios from "../../service/httpclient";
 import {
   ADMIN_FETCH_INVITATION,
+  getBookingById,
+  getMomentById,
   getUserUpdateInvitation,
   RESTAURANT_INVITATION,
+  USER_CREATE_BOOKING,
   USER_INVITATION,
 } from "../../service/url";
 import { MemberStatusRequest } from "../../bookings/booking.model";
@@ -128,3 +131,65 @@ export const updateInvitation =
         });
       });
   };
+
+export const getMoment = (id: Number) => (dispatch: Dispatch<Action>) => {
+  dispatch({
+    type: BookingActionType.START_LOAD_INVITATION,
+  });
+  axios
+    .get(`${getMomentById(id)}`)
+    .then((response: any) => {
+      dispatch({
+        type: BookingActionType.SET_MOMENT,
+        payload: response.data,
+      });
+    })
+    .catch((err) => {
+      console.log("error caught here");
+      dispatch({
+        type: BookingActionType.END_LOAD_INVITATION,
+        payload: err.message,
+      });
+    });
+};
+export const addBooking = (data: any) => (dispatch: Dispatch<Action>) => {
+  //do something
+  dispatch({
+    type: BookingActionType.START_LOAD_INVITATION,
+  });
+  axios
+    .post(`${USER_CREATE_BOOKING}`, data)
+    .then((response: any) => {
+      dispatch({
+        type: BookingActionType.ADD_BOOKING,
+        payload: response.data.booking_id,
+      });
+    })
+    .catch((err) => {
+      console.log("error caught here");
+      dispatch({
+        type: BookingActionType.END_LOAD_INVITATION,
+        payload: err.message,
+      });
+    });
+};
+
+export const getBooking = (id: number) => (dispatch: Dispatch<Action>) => {
+  dispatch({
+    type: BookingActionType.START_LOAD_INVITATION,
+  });
+  axios
+    .get(`${getBookingById(id)}`)
+    .then((response: any) => {
+      dispatch({
+        type: BookingActionType.SET_BOOKING_RESPONSE,
+        payload: response.data,
+      });
+    })
+    .catch((err) => {
+      dispatch({
+        type: BookingActionType.END_LOAD_INVITATION,
+        payload: err.message,
+      });
+    });
+};
