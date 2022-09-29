@@ -5,6 +5,11 @@ interface InvitationSetAction {
   payload: any;
 }
 
+interface BoookingAddBooking {
+  type: BookingActionType.ADD_BOOKING;
+  payload: any;
+}
+
 interface InvitationUpdateAction {
   type: BookingActionType.SET_INVITATION;
   payload: any;
@@ -31,6 +36,22 @@ interface UpdateBookingAction {
   payload: any;
   type: BookingActionType.UPDATE_BOOKING;
 }
+
+interface SetMoment {
+  payload: any;
+  type: BookingActionType.SET_MOMENT;
+}
+
+interface GetMoment {
+  payload: any;
+  type: BookingActionType.GET_MOMENT;
+}
+
+interface SetBookingResponse {
+  payload: any;
+  type: BookingActionType.SET_BOOKING_RESPONSE;
+}
+
 export type Action =
   | InvitationSetAction
   | InvitationStartAction
@@ -38,5 +59,8 @@ export type Action =
   | InvitationUpdateAction
   | SetBookingAction
   | UpdateBookingAction
+  | GetMoment
+  | SetMoment
+  | BoookingAddBooking
+  | SetBookingResponse
   | SetAdminInvitationAction;
-

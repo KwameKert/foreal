@@ -36,3 +36,15 @@
     transform: rotate(360deg);
   }
 }
+
+.react-player video {
+  position: relative;
+  margin-left:"50px";
+  top: 0;
+
+  transform: none;
+}
+
+.react-datetime-picker__wrapper{
+  border: none !important;
+}
