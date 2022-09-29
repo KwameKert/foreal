@@ -1,13 +1,22 @@
 import { Action } from "../actions/booking";
 import { BookingActionType } from "../action-types";
-import { Booking, Invitation } from "../../bookings/booking.model";
+import {
+  Booking,
+  BookingResponse,
+  Invitation,
+} from "../../bookings/booking.model";
 import { BookingList } from "../../pages/booking/booking.model";
+import { Moment } from "../../bookings/moment.model";
 
 interface BookState {
   invitation: Invitation;
   bookingList: BookingList;
+  bookingResponse: BookingResponse;
   bookingRequest: Booking;
+  bookingId: number | string;
+  moment: Moment;
   loading: boolean;
+  bookingSuccessful: boolean;
   error: string | null;
 }
 
@@ -15,7 +24,11 @@ const initialState = {
   invitation: {},
   bookingList: {},
   bookingRequest: {},
+  moment: {},
+  bookingResponse: {},
+  bookingId: "",
   loading: false,
+  bookingSuccessful: false,
   error: null,
 };
 
@@ -41,10 +54,19 @@ const reducer = (
         loading: false,
         bookingList: action.payload,
       };
+
     case BookingActionType.SET_BOOKING:
       return {
         ...state,
         bookingRequest: action.payload,
+        loading: false,
+      };
+
+    case BookingActionType.ADD_BOOKING:
+      return {
+        ...state,
+        bookingSuccessful: true,
+        bookingId: action.payload,
         loading: false,
       };
 
@@ -61,6 +83,20 @@ const reducer = (
       return {
         ...state,
         error: action.payload,
+        loading: false,
+      };
+    case BookingActionType.SET_MOMENT:
+      return {
+        ...state,
+        moment: action.payload,
+        bookingSuccessful: false,
+        loading: false,
+      };
+
+    case BookingActionType.SET_BOOKING_RESPONSE:
+      return {
+        ...state,
+        bookingResponse: action.payload,
         loading: false,
       };
     default:

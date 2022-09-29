@@ -7,9 +7,10 @@ type AppInputProps = {
   variant: "standard" | "filled" | "outlined" | undefined;
   label: string;
   onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
-  value?: string;
+  value?: string | number;
   type?: string;
   name?: string;
+  touched?: any;
   error?: string;
   inputClass?: string;
 };
@@ -19,11 +20,18 @@ export const AppInput: FunctionComponent<AppInputProps> = ({
   name,
   label,
   value,
+  touched,
   onChange,
   inputClass = "w-full",
   type = "text",
   error,
 }) => {
+  const showError = () => {
+    console.log(error);
+    if (touched && error) {
+      return <div className="text-red-500">{error}</div>;
+    }
+  };
   return (
     <>
       <div className={inputClass}>
@@ -38,7 +46,7 @@ export const AppInput: FunctionComponent<AppInputProps> = ({
           type={type}
           fullWidth
         />
-        {error && <div className="text-red-500">{error}</div>}
+        <div className="text-red-500">{error}</div>
       </div>
     </>
 

@@ -11,6 +11,14 @@ export interface Place {
   place_image: string;
 }
 
+export interface BookingResponse {
+  booking_id?: number;
+  meeting_time?: Date;
+  place_name?: string;
+  place_id?: number;
+  party_size?: number;
+}
+
 export interface Person {
   booking_member_id: number;
   member_email: string;
