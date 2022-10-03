@@ -11,14 +11,14 @@ import { useActions } from "../hooks/useBooking";
 import { useEffect } from "react";
 
 interface FormValues {
-  title: string;
+  //title: string;
   meeting_time: Date | string | any;
   moment_creator?: number;
   moment_id?: number;
   place_id?: number;
   party_size_adults: number;
   email: string;
-  username: string;
+  //username: string;
   full_name: string;
 }
 
@@ -40,8 +40,8 @@ export const UserBooking = () => {
 
   const formik = useFormik<FormValues>({
     initialValues: {
-      username: "",
-      title: "",
+    //  username: "",
+     // title: "",
       meeting_time: null,
       moment_creator: moment.moment_creator,
       moment_id: moment.moment_id,
@@ -83,7 +83,7 @@ export const UserBooking = () => {
 
             <form onSubmit={formik.handleSubmit}>
               {error && <p className="text-red-500">{error}</p>}
-              <AppInput
+              {/* <AppInput
                 variant="standard"
                 label="Title"
                 name="title"
@@ -91,7 +91,7 @@ export const UserBooking = () => {
                 onChange={formik.handleChange}
                 value={formik.values.title}
                 error={formik.errors.title}
-              />
+              /> */}
 
               <AppDate
                 variant="standard"
@@ -123,7 +123,7 @@ export const UserBooking = () => {
                 value={formik.values.full_name}
                 error={formik.errors.full_name}
               />
-              <AppInput
+              {/* <AppInput
                 variant="standard"
                 label="Username"
                 name="username"
@@ -131,7 +131,7 @@ export const UserBooking = () => {
                 onChange={formik.handleChange}
                 value={formik.values.username}
                 error={formik.errors.username}
-              />
+              /> */}
               <AppInput
                 variant="standard"
                 label="Email"
