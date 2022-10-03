@@ -1,4 +1,4 @@
-import { Box, Chip, CircularProgress } from "@mui/material";
+import { Chip, CircularProgress } from "@mui/material";
 import ReactPlayer from "react-player";
 import { AppButton } from "../core/components/AppButton";
 import CategoryIcon from "@mui/icons-material/Category";
