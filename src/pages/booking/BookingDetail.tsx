@@ -143,13 +143,6 @@ export const BookingDetail: FunctionComponent<BookingDetailProps> = ({}) => {
                     .format("MMMM Do YYYY, h:mm:ss a")}
                 </p>
               </div>
-              {/* <div className="py-4">
-                <p className="text-slate-500">Created at</p>
-                <p className="font-semibold">
-                  {moment(bookingRequest., "YYYYMMDD").fromNow()}
-                </p>
-              </div> */}
-
               <div className="py-4">
                 <p className="text-slate-500">Status </p>
                 <StatusLabel
@@ -157,6 +150,14 @@ export const BookingDetail: FunctionComponent<BookingDetailProps> = ({}) => {
                     bookingRequest.restaurant_approved
                   )}
                 />
+              </div>
+            </div>
+            <div className="grid grid-cols-2 gap-2">
+              <div className="py-4">
+                <p className="text-slate-500">Party size </p>
+                <p className="font-semibold">
+                  {bookingRequest.party_size_adults}
+                </p>
               </div>
             </div>
           </div>
