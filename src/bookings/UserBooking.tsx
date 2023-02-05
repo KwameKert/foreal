@@ -1,6 +1,5 @@
 import { useSelector } from "../hooks/useTypesSelector";
 import * as Yup from "yup";
-import momentJs from "moment";
 import { useFormik } from "formik";
 import { AuthHeader } from "../auth/components/auth-header";
 import { AppInput } from "../core/components/AppInput";
@@ -31,17 +30,16 @@ export const UserBooking = () => {
     (state) => state.booking
   );
   const validationSchema = Yup.object().shape({
-    title: Yup.string().required("Title is required"),
+    meeting_time: Yup.date().required("Meeting time is required"),
     party_size_adults: Yup.number().required("Party size is required"),
     full_name: Yup.string().required("Fullname is required"),
     email: Yup.string().required("Email is required"),
-    username: Yup.string().required("Username is required"),
   });
 
   const formik = useFormik<FormValues>({
     initialValues: {
-    //  username: "",
-     // title: "",
+      //  username: "",
+      // title: "",
       meeting_time: null,
       moment_creator: moment.moment_creator,
       moment_id: moment.moment_id,
@@ -83,16 +81,6 @@ export const UserBooking = () => {
 
             <form onSubmit={formik.handleSubmit}>
               {error && <p className="text-red-500">{error}</p>}
-              {/* <AppInput
-                variant="standard"
-                label="Title"
-                name="title"
-                inputClass="w-full py-2"
-                onChange={formik.handleChange}
-                value={formik.values.title}
-                error={formik.errors.title}
-              /> */}
-
               <AppDate
                 variant="standard"
                 label="Date"
@@ -123,15 +111,7 @@ export const UserBooking = () => {
                 value={formik.values.full_name}
                 error={formik.errors.full_name}
               />
-              {/* <AppInput
-                variant="standard"
-                label="Username"
-                name="username"
-                inputClass="w-full py-2"
-                onChange={formik.handleChange}
-                value={formik.values.username}
-                error={formik.errors.username}
-              /> */}
+
               <AppInput
                 variant="standard"
                 label="Email"
